@@ -121,7 +121,7 @@
       <section>
         <h1>Projects</h1>
         <p>Click specific project for details</p>
-        <button class="outline" id="button_1" >EEG Based Directional Signal Classification using RRN Variants</button>
+        <button class="outline" id="button_1" >Using Vision and Vehicular Information to Analyze Driver Responses in Simulated Driving Scenarios</button>
 
 <!-- The Modal -->
 <div id="openModal_1" class="modal" style="z-index:99; text-align: center;">
@@ -129,11 +129,59 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
+    <h2>Using Vision and Vehicular Information to Analyze Driver Responses in Simulated Driving Scenarios</h2>
+    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQMuOziYGVoufCCSe1-uDpuLc2uUslXHDVG5xjIP0t0k2a4zGCJ2XCjgY0iZXLtpg/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe></div>
+        <button class="outline" id="button_2" >Guided pathways for individuals with mobility impairments</button>
+
+<!-- The Modal -->
+<div id="openModal_2" class="modal" style="z-index:99; text-align: center;">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Guided pathways for individuals with mobility impairments</h2>
+    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQfE6jSHLCUkKj2OJbSBCpOB5GDvOZltd-ORlXTB8KNArrUaLDT2utFOBRStEZexg/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+  </div>
+</div>
+
+<button class="outline" id="button_3" >Digital Storyboard for Guided pathways analysis</button>
+
+<!-- The Modal -->
+<div id="openModal_3" class="modal" style="z-index:99; text-align: center;">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>EEG Based Directional Signal Classification using RRN Variants</h2>
+    <iframe src="https://bikram11.github.io/PMS_Digital_Story/" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+  </div>
+</div>
+
+        <button class="outline" id="button_4" >EEG Based Directional Signal Classification using RRN Variants</button>
+
+<!-- The Modal -->
+<div id="openModal_4" class="modal" style="z-index:99; text-align: center;">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
     <h2>EEG Based Directional Signal Classification using RRN Variants</h2>
     <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRHGI_6eHXnrbvsGFYLLinbxHv7reGv0GB49uymq_pNTM_ZwKjOBnl_A9ueMgEuGY4AIa3fiRiDkIr5/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
   </div>
-
 </div>
+
+<button class="outline" id="button_5" >Digital Identification Card</button>
+
+<!-- The Modal -->
+<div id="openModal_5" class="modal" style="z-index:99; text-align: center;">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Digital Identification Card</h2>
+    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSKJ8KapQaTo12GQAhN_4z4GP_5iqNNrgqxFyUM47C2kb5QWCy6PEpnbC70M0V1AQ/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>  </div>
+</div>
+
        
       </section>
       <section>
@@ -199,7 +247,7 @@
 <script>
 
 // Get the button that opens the modal
-for(var i=1;i<6;i++){
+for(var i=1;i<5;i++){
   $('#button_'+i).on('click', function() {
     var modal = document.getElementById('openModal_'+i);
     modal.style.display="block";
@@ -212,7 +260,7 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-  for(var i=1;i<6;i++){
+  for(var i=1;i<5;i++){
   
     var modal = document.getElementById('openModal_'+i);
     modal.style.display="none";
@@ -222,7 +270,7 @@ span.onclick = function() {
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-  for(var i=1;i<6;i++){
+  for(var i=1;i<5;i++){
  if(event.target== $('#button_'+i)) {
   var modal = document.getElementById('openModal_'+i);
     modal.style.display="none";
