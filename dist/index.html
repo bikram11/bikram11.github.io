@@ -20,28 +20,32 @@
   }
 
 
-settings = {
-    //Model Popup
-    objModalPopupBtn: ".modalButton",
-    objModalCloseBtn: ".overlay, .closeBtn",
-    objModalDataAttr: "data-popup"
-}  
-  $(settings.objModalPopupBtn).bind("click", function () {
-        if ($(this).attr(settings.objModalDataAttr)) {
+  function ShowProject(modelName){
+  var modal = document.getElementById(modelName+"_model");
 
-            var strDataPopupName = $(this).attr(settings.objModalDataAttr);
+// Get the button that opens the modal
+var btn = document.getElementById(modelName);
 
-            
-            //Fade In Modal Pop Up
-            $(".overlay, #" + strDataPopupName).fadeIn();
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-        }
-    });
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
 
-    //On clicking the modal background
-    $(settings.objModalCloseBtn).bind("click", function () {
-        $(".modal").fadeOut();
-    });
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+}
 
   </SCRIPT>
 </head>
@@ -142,17 +146,19 @@ settings = {
       <section>
         <h1>Projects</h1>
         <p>Click specific project for details</p>
-        <a href="#" class="outline" data-popup="popupOne">EEG Based Directional Signal Classification using RRN Variants</a>
+        <button class="outline" id="myBtn" onclick="ShowProject('EEG_based')">EEG Based Directional Signal Classification using RRN Variants</button>
 
-        <section class="modal modalWindow" id="popupOne">  
-          <section class="modalWrapper">
-            <h2>EEG Based Directional Signal Classification using RRN Variants</h2>
-            <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRHGI_6eHXnrbvsGFYLLinbxHv7reGv0GB49uymq_pNTM_ZwKjOBnl_A9ueMgEuGY4AIa3fiRiDkIr5/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<!-- The Modal -->
+<div id="EEG_based_model" class="modal">
 
-            
-          </section>
-          <a class="closeBtn">x</a>
-        </section>
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>EEG Based Directional Signal Classification using RRN Variants</h2>
+    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRHGI_6eHXnrbvsGFYLLinbxHv7reGv0GB49uymq_pNTM_ZwKjOBnl_A9ueMgEuGY4AIa3fiRiDkIr5/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+  </div>
+
+</div>
        
       </section>
       <section>
