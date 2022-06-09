@@ -252,8 +252,7 @@
 <script>
 
   $('[open-modal]').on('click', function(){
-    var id = $(this).attr('open-modal');
-    $(id).css('display','block');
+    $(this).attr('open-modal').css('display','block');
   });
   
   $('[close-modal]').on('click', function(){
