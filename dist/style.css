@@ -87,6 +87,7 @@ button {
 
   button.purple-white {
 	font-weight: 700;
+	font-size: 10px;
 	color: #664e96;
 	border-color: #664e96;
 	background: transparent;
