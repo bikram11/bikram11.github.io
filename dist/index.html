@@ -253,7 +253,8 @@
 
   $('[open-modal]').on('click', function(){
     var id = $(this).attr('open-modal')[0];
-    id.style.display="block";
+    id.display = "block";
+   
   });
   
   $('[close-modal]').on('click', function(){
