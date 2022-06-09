@@ -201,7 +201,8 @@
 // Get the button that opens the modal
 for(var i=1;i<6;i++){
   $('#button_'+i).on('click', function() {
-    $('#openModal_'+i).style.display="block"
+    var modal = document.getElementById('openModal_'+i);
+    modal.style.display="block";
 });
 }
 
@@ -213,7 +214,8 @@ var span = document.getElementsByClassName("close")[0];
 span.onclick = function() {
   for(var i=1;i<6;i++){
   
-    $('#openModal_'+i).style.display="none";
+    var modal = document.getElementById('openModal_'+i);
+    modal.style.display="none";
 
 }
 }
@@ -222,7 +224,8 @@ span.onclick = function() {
 window.onclick = function(event) {
   for(var i=1;i<6;i++){
  if(event.target== $('#button_'+i)) {
-    $('#openModal_'+i).style.display="none";
+  var modal = document.getElementById('openModal_'+i);
+    modal.style.display="none";
 };
 }
 }
