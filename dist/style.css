@@ -102,7 +102,7 @@ button {
 .modal {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
+	z-index: 99; /* Sit on top */
 	left: 0;
 	text-align: center;
 	top: 0;
