@@ -134,7 +134,7 @@
 
     </div>
 
-    
+
         <button class="outline" id="button_2" >Guided pathways for individuals with mobility impairments</button>
   
 <!-- The Modal -->
@@ -252,7 +252,7 @@
 
 // Get the button that opens the modal
 for(var i=1;i<5;i++){
-  $('#button_'+i).on('click', function() {
+ document.getElementById('button_'+i).addEventListener("click", function() {
     var modal = document.getElementById('openModal_'+i);
     modal.style.display="block";
 });
