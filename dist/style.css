@@ -85,7 +85,17 @@ button {
 	border-radius: 22px;
   }
 
-
+  button.purple-white {
+	font-weight: 700;
+	color: #664e96;
+	border-color: #664e96;
+	background: transparent;
+  }
+  button.purple-white:hover {
+	color: white;
+	background: #664e96;
+	border-color: #664e96;
+  }
 
 .name-hero
 {
