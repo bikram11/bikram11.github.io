@@ -252,8 +252,8 @@
 <script>
 
   $('[open-modal]').on('click', function(){
-    var id = $(this).attr('open-modal')[0];
-    id.display = "block";
+    var id = $(this).attr('open-modal');
+    document.getElementById(id).style.display = "block";
    
   });
   
