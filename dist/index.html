@@ -19,8 +19,7 @@
       }
   }
 
-
-  function ShowProject(modelName){
+  modelName = "EEG_based";
   var modal = document.getElementById(modelName+"_model");
 
 // Get the button that opens the modal
@@ -45,7 +44,7 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-}
+
 
   </SCRIPT>
 </head>
@@ -146,7 +145,7 @@ window.onclick = function(event) {
       <section>
         <h1>Projects</h1>
         <p>Click specific project for details</p>
-        <button class="outline" id="myBtn" onclick="ShowProject('EEG_based')">EEG Based Directional Signal Classification using RRN Variants</button>
+        <button class="outline" id="EEG_based" >EEG Based Directional Signal Classification using RRN Variants</button>
 
 <!-- The Modal -->
 <div id="EEG_based_model" class="modal">
