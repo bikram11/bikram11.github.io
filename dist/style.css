@@ -53,6 +53,37 @@ h1
 	position:relative;
 	width:66.66%;
 }
+button {
+	cursor: pointer;
+	outline: none;
+  }
+  button.outline {
+	position: relative;
+	z-index: 3;
+	background: transparent;
+	color: rgba(0,0,0,.75);
+	font-size: 14px;
+	border-color: rgba(0,0,0,.75);
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 22px;
+	padding: 10px 40px;
+	text-transform: uppercase;
+	transition: all 0.2s linear;
+  }
+  button.outline a {
+	text-decoration: none;
+  }
+  button.outline:hover {
+	color: white;
+	background: rgba(0,0,0,.75);
+	border-color: white;
+	transition: all 0.2s linear;
+  }
+  button.outline:active {
+	border-radius: 22px;
+  }
+
 
 
 .name-hero
