@@ -23,6 +23,22 @@
 
 
   </SCRIPT>
+  <script>
+
+    $('[open-modal]').on('click', function(){
+      var id = $(this).attr('open-modal');
+      id.style.display="block";
+    });
+    
+    $('[close-modal]').on('click', function(){
+      $(this).parents('.modal').style.display="none";
+    });
+    
+    $('.modal').on('click', function(e) {
+      if(e.target !== this){return};
+      $(this).style.display="none";
+    });
+    </script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -248,22 +264,7 @@
   
 </div>
 <!-- partial -->
-<script>
 
-$('[open-modal]').on('click', function(){
-  var id = $(this).attr('open-modal');
-  $('.modal#'+id).addClass('active');
-});
-
-$('[close-modal]').on('click', function(){
-  $(this).parents('.modal').removeClass('active');
-});
-
-$('.modal').on('click', function(e) {
-  if(e.target !== this){return};
-  $(this).removeClass('active');
-});
-</script>
   <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </body>
 </html>
