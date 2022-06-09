@@ -8,7 +8,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="./style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-
+<SCRIPT>
+  function ShowAndHide(detailTitle) {
+      var x = document.getElementById(detailTitle+'_details');
+      if (x.style.display == 'none') {
+          x.style.display = 'block';
+      } else {
+          x.style.display = 'none';
+      }
+  }
+  </SCRIPT>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -59,6 +68,18 @@
         <button type="submit" class="outline">Computer Vision</button>
         <button type="submit" class="outline">Simulation and Modeling</button>
         </section>
+
+        <section>
+          <h1>Technical Expertise</h1>
+          <button type="submit" class="outline" onclick="ShowAndHide(Data_explore)">Data exploration (Programming)</button>
+          <DIV ID="Data_explore_details" STYLE="display:none">
+            <button type="submit" class="outline">Python</button>
+          </DIV>
+          <button type="submit" class="outline">Web Development</button>
+          <button type="submit" class="outline">Mobile Application Development</button>
+          <button type="submit" class="outline">Expert Programming Domain</button>
+          <button type="submit" class="outline">Simulation and Modeling</button>
+          </section>
       <section>
         <h1>Publications</h1>
         <h3>First Author</h3>
