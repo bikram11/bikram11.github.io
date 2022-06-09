@@ -253,16 +253,16 @@
 
   $('[open-modal]').on('click', function(){
     var id = $(this).attr('open-modal');
-    id.css('display'​​​​​​​​​​​​​​​​​​​​​​​​​​​,'block');​​​​​​
+    id.css('display','block');
   });
   
   $('[close-modal]').on('click', function(){
-    $(this).parents('.modal').css('display'​​​​​​​​​​​​​​​​​​​​​​​​​​​,'none');​​​​​​
+    $(this).parents('.modal').css('display','none');
   });
   
   $('.modal').on('click', function(e) {
     if(e.target !== this){return};
-    $(this).css('display'​​​​​​​​​​​​​​​​​​​​​​​​​​​,'none');​​​​​​
+    $(this).css('display','none');
   });
   </script>
   <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
