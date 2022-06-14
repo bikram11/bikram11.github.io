@@ -222,10 +222,10 @@ button {
 	background: #7da10e;
   }
   .social-button--snapchat {
-	color: #eec900;
+	color: #26B556;
   }
   .social-button--snapchat::after {
-	background: #eec900;
+	background: #26B556;
   }
   .social-button--twitter {
 	color: #55acee;
