@@ -20,7 +20,7 @@
         x.style.display = 'block';
       } else {
         x.style.display = 'none';
-      }
+      } 
     }
 
 
@@ -28,12 +28,17 @@
 
   </SCRIPT>
   <script>
-    window.addEventListener("hashchange", function() { scrollBy(0, -50) });
+    if(window.innerWidth>1396){
+      window.addEventListener("hashchange", function() { scrollBy(0, -50) });
+    }else{
+      window.addEventListener("hashchange", function() { scrollBy(0, -150) });
+    }
+   
 
   </script>
-  <!-- <script>
+  <script>
     window.history.replaceState('', '', '/~badhika5');
-  </script> -->
+  </script>
 </head>
 
 <body>
@@ -43,9 +48,9 @@
     rel='stylesheet' type='text/css'>
 
   <div class="wrapper clearfix">
-    <div class="left">
+    <div class="left" style="text-align: center;">
 
-      <div class="name-hero">
+      <div class="name-hero" style="margin-top:20%;position:initial">
 
         <div class="me-img">
         </div>
@@ -58,6 +63,14 @@
           <p>(571) 340-7772</p>
 
         </div>
+        <div class="name-text">
+
+          <h2>About Me:</h2>
+          <p>Greetings!! I am a Ph.D. student in the Department of Computer Science at George Mason University. I work under Dr. Zoran Durić and Dr. Duminda Wijesekera at the <a href="https://www.gmu.edu/news/2019-12/mason-unveil-new-cyber-living-innovation-lab-part-cci">Cyber Living Innovation Lab.</a></p>
+          <br>
+          <p>
+            My research interest lies in algorithmic human behavioral analysis and computer vision. Currently, I'm working on <b>Driver behavioral analysis</b> in a simulated and real-world situation. Another ongoing research is <b>sensor-based occupancy detection</b> and analysis using passive IR sensors.</p>
+        </div>
         <br>
         <div class="social-buttons">
           <a href="mailto:badhika5@gmu.edu" class="social-buttons__button social-button social-button--mail"
@@ -68,9 +81,9 @@
             class="social-buttons__button social-button social-button--linkedin" aria-label="LinkedIn">
             <i class="fab fa-linkedin-in"></i>
           </a>
-          <a href="#" class="social-buttons__button social-button social-button--snapchat" aria-label="HackerRank">
+          <!-- <a href="#" class="social-buttons__button social-button social-button--snapchat" aria-label="HackerRank">
             <i class="fab fa-hackerrank"></i>
-          </a>
+          </a> -->
           <a href="https://github.com/bikram11" class="social-buttons__button social-button social-button--github"
             aria-label="GitHub">
             <i class="fab fa-github"></i>
@@ -104,8 +117,6 @@
           <h3>George Mason University <em style="color:rgba(0,0,0,.5); font-size:0.8em">PhD in Computer Science. |
               January 2021 - Present</em></h3>
           <p>Advisor : <b>Dr. Zoran Durić</b></p>
-          <p>Working on <b>Smart Cities and Driver Behavior Analysis</b> under <b>Commonwealth Cyber Initiative
-              (CCI)</b> lab with Dr. Zoran Durić and Dr. Duminda Wijesekera</p>
           <p> <span class="fa fa-star checked"></span> Recipient of <b>Digital Innovation Summer Fellowship for Applied
               Research</b>, Summer 2022.</p>
           <p><span class="fa fa-star checked"></span> <b>NSF Research Traineeship (NRT)</b> Fellow 2021-22</p>
@@ -127,6 +138,7 @@
 
         <section id="technical">
           <h1>Technical Expertise</h1>
+          <p>Click specific Expertise for detail</p>
           <button type="submit" class="outline" onclick="ShowAndHide('Data_explore')">Data exploration and
             Analysis</button>
           <DIV ID="Data_explore_details" STYLE="display:none">
@@ -175,7 +187,24 @@
         </section>
         <section id="project">
           <h1>Projects</h1>
-          <p>Click specific project for details</p>
+          <p>Click specific project for detail</p>
+
+          <button class="outline" open-modal="openModal_0">Driver Gaze Mapping in real time</button>
+
+          <!-- The Modal -->
+          <div id="openModal_0" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" close-modal>&times;</span>
+              <h2>Driver Gaze Mapping in real time</h2>
+              <iframe
+                src="https://docs.google.com/presentation/d/e/2PACX-1vRFwFIldJ0hoYKIye43QzR7di8LGFQbnf-2eIoJteos1xP4n5ft3ZrqUGhIIYPCiw/embed?start=false&loop=false&delayms=3000"
+                frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true"
+                webkitallowfullscreen="true"></iframe>
+            </div>
+
+          </div>
           <button class="outline" open-modal="openModal_1">Using Vision and Vehicular Information to Analyze Driver
             Responses in Simulated Driving Scenarios</button>
 
@@ -263,8 +292,13 @@
         </section>
         <section id="employment">
           <h1>Employment</h1>
-          <h3>George Mason University | <em style="color:rgba(0,0,0,.5); font-size:0.8em"> Graduate Teaching Assistant |
+          <h3>George Mason University | <em style="color:rgba(0,0,0,.5); font-size:0.8em"> Graduate Research/Teaching Assistant |
               January 2021 - Present </em></h3>
+          <p>Working on <b>Driver Behavior Analysis and connected vehicles</b> under <b>Commonwealth Cyber Initiative
+                (CCI)</b> lab with Dr. Zoran Durić and Dr. Duminda Wijesekera</p>
+                <ul>
+                  <li><a src="https://gmuedu-my.sharepoint.com/:b:/g/personal/badhika5_gmu_edu/ETvR9zJukIhBhZO9WAih4ZYBl7DUlteSuEk5z3oqfvBoyg?e=eOpak8">Estimation of Vehicular Velocity based on Non-Intrusive stereo camera: RMSE score lowered from baseline by 0.17</a></li>
+                </ul>
           <p>CS 211: <b>Object Oriented Programming</b> in Java for Spring 2021</p>
           <p>CS 484/CS 584: <b>Data Mining</b> for Fall 2021, Spring 2022</p>
           <h3>LIS Nepal Pvt. Ltd. | <em style="color:rgba(0,0,0,.5); font-size:0.8em">Software Engineer | September 2018
