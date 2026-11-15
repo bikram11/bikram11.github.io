@@ -12,7 +12,46 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./nepal-8bit.css">
+
+  <script>
+    (function () {
+      function kathmanduDecimalHour() {
+        var parts = new Intl.DateTimeFormat('en-GB', {
+          timeZone: 'Asia/Kathmandu',
+          hour: 'numeric',
+          minute: 'numeric',
+          hourCycle: 'h23'
+        }).formatToParts(new Date());
+        var h = 0, m = 0;
+        for (var i = 0; i < parts.length; i++) {
+          if (parts[i].type === 'hour') h = parseInt(parts[i].value, 10);
+          if (parts[i].type === 'minute') m = parseInt(parts[i].value, 10);
+        }
+        return h + m / 60;
+      }
+
+      function phaseFor(hour) {
+        if (hour >= 4 && hour < 5.5) return 'dawn';
+        if (hour >= 5.5 && hour < 7) return 'sunrise';
+        if (hour >= 7 && hour < 16.5) return 'day';
+        if (hour >= 16.5 && hour < 18) return 'sunset';
+        if (hour >= 18 && hour < 20) return 'dusk';
+        return 'night';
+      }
+
+      function applyDaytimePhase() {
+        try {
+          document.documentElement.setAttribute('data-daytime', phaseFor(kathmanduDecimalHour()));
+        } catch (e) {
+          document.documentElement.setAttribute('data-daytime', 'day');
+        }
+      }
+
+      applyDaytimePhase();
+      setInterval(applyDaytimePhase, 60000);
+    })();
+  </script>
 
   <script>
     function myFunction() {
@@ -78,9 +117,46 @@
           </div>
         </div>
 
+        <div class="house" style="left:6%">
+          <div class="roof"></div>
+          <div class="wall">
+            <span class="window w1"></span>
+            <span class="window w2"></span>
+            <span class="door"></span>
+          </div>
+        </div>
+
+        <div class="crosswalk" style="left:55%"></div>
+
+        <div class="person walk shirt-gold" style="animation-duration:13s; animation-delay:-4s;">
+          <span class="head"></span><span class="torso"></span>
+          <span class="leg l"></span><span class="leg r"></span>
+        </div>
+        <div class="person cross shirt-teal" style="left:56%;">
+          <span class="head"></span><span class="torso"></span>
+          <span class="leg l"></span><span class="leg r"></span>
+        </div>
+
         <div class="car">
           <span class="body"></span>
           <span class="cab"></span>
+          <span class="wheel w1"></span>
+          <span class="wheel w2"></span>
+        </div>
+        <div class="car c2">
+          <span class="body"></span>
+          <span class="cab"></span>
+          <span class="wheel w1"></span>
+          <span class="wheel w2"></span>
+        </div>
+        <div class="bus">
+          <span class="roofline"></span>
+          <span class="body"></span>
+          <span class="stripe"></span>
+          <span class="windshield"></span>
+          <span class="windows"></span>
+          <span class="mirror"></span>
+          <span class="light"></span>
           <span class="wheel w1"></span>
           <span class="wheel w2"></span>
         </div>
@@ -311,12 +387,13 @@
           </div>
         </section>
       </div>
+      </div>
 
-        <div class="scene scene--footer" aria-hidden="true">
-          <div class="cloud c1"></div>
-          <div class="cloud c2"></div>
-          <div class="bird b1"></div>
-          <div class="bird b2"></div>
+      <div class="scene scene--footer" aria-hidden="true">
+        <div class="cloud c1"></div>
+        <div class="cloud c2"></div>
+        <div class="bird b1"></div>
+        <div class="bird b2"></div>
 
           <div class="hills far">
             <svg viewBox="0 0 400 100" preserveAspectRatio="none">
@@ -354,9 +431,97 @@
             </div>
           </div>
 
+          <div class="house" style="left:4%">
+            <div class="roof"></div>
+            <div class="wall">
+              <span class="window w1"></span>
+              <span class="window w2"></span>
+              <span class="door"></span>
+            </div>
+          </div>
+          <div class="house" style="left:88%">
+            <div class="roof"></div>
+            <div class="wall">
+              <span class="window w1"></span>
+              <span class="window w2"></span>
+              <span class="door"></span>
+            </div>
+          </div>
+
+          <div class="stall" style="left:15%">
+            <div class="awning"></div>
+            <div class="post post-l"></div>
+            <div class="post post-r"></div>
+            <div class="counter">
+              <span class="goods g1"></span><span class="goods g2"></span><span class="goods g3"></span>
+            </div>
+          </div>
+          <div class="stall" style="left:79%">
+            <div class="awning"></div>
+            <div class="post post-l"></div>
+            <div class="post post-r"></div>
+            <div class="counter">
+              <span class="goods g1"></span><span class="goods g2"></span><span class="goods g3"></span>
+            </div>
+          </div>
+
+          <div class="crosswalk" style="left:68%"></div>
+
+          <div class="person walk shirt-gold" style="animation-duration:15s; animation-delay:-3s;">
+            <span class="head"></span><span class="torso"></span>
+            <span class="leg l"></span><span class="leg r"></span>
+          </div>
+          <div class="person walk shirt-teal" style="bottom:calc(var(--scene-ground-height) + 4px); animation-duration:19s; animation-delay:-11s;">
+            <span class="head"></span><span class="torso"></span>
+            <span class="leg l"></span><span class="leg r"></span>
+          </div>
+
+          <div class="person cross" style="left:68%;">
+            <span class="head"></span><span class="torso"></span>
+            <span class="leg l"></span><span class="leg r"></span>
+          </div>
+          <div class="person cross shirt-sage" style="left:71.5%;">
+            <span class="head"></span><span class="torso"></span>
+            <span class="leg l"></span><span class="leg r"></span>
+          </div>
+
           <div class="car">
             <span class="body"></span>
             <span class="cab"></span>
+            <span class="wheel w1"></span>
+            <span class="wheel w2"></span>
+          </div>
+          <div class="car c2">
+            <span class="body"></span>
+            <span class="cab"></span>
+            <span class="wheel w1"></span>
+            <span class="wheel w2"></span>
+          </div>
+          <div class="car c3">
+            <span class="body"></span>
+            <span class="cab"></span>
+            <span class="wheel w1"></span>
+            <span class="wheel w2"></span>
+          </div>
+          <div class="bus">
+            <span class="roofline"></span>
+            <span class="body"></span>
+            <span class="stripe"></span>
+            <span class="windshield"></span>
+            <span class="windows"></span>
+            <span class="mirror"></span>
+            <span class="light"></span>
+            <span class="wheel w1"></span>
+            <span class="wheel w2"></span>
+          </div>
+          <div class="bus b2">
+            <span class="roofline"></span>
+            <span class="body"></span>
+            <span class="stripe"></span>
+            <span class="windshield"></span>
+            <span class="windows"></span>
+            <span class="mirror"></span>
+            <span class="light"></span>
             <span class="wheel w1"></span>
             <span class="wheel w2"></span>
           </div>
