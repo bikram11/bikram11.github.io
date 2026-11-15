@@ -1,86 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bikram Adhikari — Driver Behavior Research</title>
 
-<link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic|Open+Sans:300,400,500,700|Waiting+for+the+Sunrise|Shadows+Into+Light' rel='stylesheet' type='text/css'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-<div class="wrapper clearfix">
-<div class="left">
-    
-    <div class="name-hero">
-      
-      <div class="me-img">
-       
-      </div>
-      
-      <div class="name-text">
-        
-        <h1>Bikram <em>Adhikari</em></h1>
-        <p>9618 Braddock Road, Fairfax, Virginia, 22032</p>
-        <p>badhika5@gmu.edu</p> 
-        <p>(571) 340-7772</p>
-     
-      </div>
-   
-    </div>
-    
-  </div>
- <div class="right">
-    
-    <div class="inner">
-      <section>
-        <h1>Employment</h1>
-        <p>Winter 2015 - Present <em>Grand Interactive, llc. | Mobile App Developer</em></p>
-        <p>Raised $78,000 in early stage funding, created initial design
-          concepts, and oversaw initial development. Currently oversee and maintain all front end code and server functionality.</p>
-        <p>Spring 2012 - Winter 2015 | <em>PadMatcher Inc. | CTO, Co-Founder</em></p>
-        <p>Raised $78,000 in early stage funding, created initial design
-          concepts, and oversaw initial development. Oversaw and maintained all front end code and server functionality.</p>
-        <p>Fall 2011 - Fall 2013 | <em>Penrose Realty llc. | Desinger & Assistant</em></p>
-        <p>Responsible for all technical areas. Maintain servers, computers, and provide in office technical support. Rebranded company from ground up including a fully responsive website.  </p>
-      </section>
-      <section>
-        <h1>Technical Skills</h1>
-        <ul class="skill-set">
-          <li>Mobile Development</li>
-          <li>Xamarin</li>
-          <li>CSS3</li>
-          <li>Adobe Photoshop</li>
-          <li>HTML5</li>
-          <li>CSS3</li>
-          <li>JQUERY</li>
-          <li>UI Design</li>
-          <li>Company Branding</li>
-          <li>Responsive Web Design</li>
-        </ul>
-      </section>
-      <section>
-        <h1>References</h1>
-        <p>William Grand | <em>Grand Interactive, llc. | CEO</em></p>
-        <p>(617) 448-0910 | wgrand@grandinteractive.com</p>
-        <p>Eric Chauvin | <em>PadMatcher Inc. | CEO</em></p>
-        <p>(617) 448-0910 | eric@padmatcher.com</p>
-        <p>Chris Heller <em>Penrose Realty LLC. | Broker</em></p>
-        <p>(617) 794-4554 | chris@penroserealty.com</p>
-      </section>
-            <section>
-        <h1>Personal Interests</h1>
-        <ul class="skill-set">
-          <li>Faith</li>
-          <li>Biblical Studies</li>
-          <li>Playing Guitar</li>
-          <li>Song Writing</li>
-          <li>Health & Nutrition</li>
-          <li>Reading</li>
-        </ul>
-      </section>
-      <section>
-        <div class="handmade">
-          <p>handmade by <em> Anthony Adamski</em></p>
+  <script>
+    function ShowAndHide(detailTitle) {
+      var x = document.getElementById(detailTitle + '_details');
+      if (x.style.display == 'none') {
+        x.style.display = 'block';
+      } else {
+        x.style.display = 'none';
+      }
+    }
+
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+
+    if (window.innerWidth > 1396) {
+      window.addEventListener("hashchange", function () { scrollBy(0, -50) });
+    } else {
+      window.addEventListener("hashchange", function () { scrollBy(0, -150) });
+    }
+  </script>
+</head>
+
+<body>
+  <div class="wrapper clearfix">
+    <div class="left">
+      <!-- Himalayan skyline + research-road motif -->
+      <div class="terrain" aria-hidden="true">
+        <div class="range r1"></div>
+        <div class="range r2"></div>
+        <div class="range r3"></div>
+        <div class="range r4"></div>
+        <div class="pixel-car">
+          <span class="car-body"></span>
+          <span class="car-cab"></span>
+          <span class="car-wheel w1"></span>
+          <span class="car-wheel w2"></span>
         </div>
-      </section>
+        <div class="road"></div>
+      </div>
+
+      <div class="emblem" aria-hidden="true">
+        <div class="sun"></div>
+        <div class="moon"></div>
+      </div>
+
+      <div class="name-hero">
+        <div class="me-img"></div>
+
+        <div class="name-text">
+          <h1>Bikram <em>Adhikari</em></h1>
+          <span class="tagline">Kathmandu → Fairfax, VA</span>
+
+          <div class="hud">
+            <p>9618 Braddock Road, Fairfax, VA 22032</p>
+            <p>badhika5@gmu.edu</p>
+            <p>(571) 340-7772</p>
+          </div>
+
+          <div class="bio-box">
+            <p><b>Greetings!!</b> I am a Ph.D. student in the Department of Computer Science at George Mason
+              University. I work under Dr. Zoran Durić and Dr. Duminda Wijesekera at the
+              <a href="https://www.gmu.edu/news/2019-12/mason-unveil-new-cyber-living-innovation-lab-part-cci">Cyber
+                Living Innovation Lab</a>.</p>
+            <p>My research interest lies in algorithmic human behavioral analysis and computer vision. Currently
+              I'm working on <b>driver behavioral analysis</b> in simulated and real-world driving. Another ongoing
+              line of research is <b>connected perception</b> at signalized intersections using V2V and V2X
+              sensor mapping.</p>
+          </div>
+
+          <div class="social-buttons">
+            <a href="mailto:badhika5@gmu.edu" class="social-buttons__button social-button social-button--mail"
+              aria-label="Email">
+              <i class="fa fa-envelope"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/bikram-adhikari/"
+              class="social-buttons__button social-button social-button--linkedin" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/bikram11" class="social-buttons__button social-button social-button--github"
+              aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.researchgate.net/profile/Bikram-Adhikari-7"
+              class="social-buttons__button social-button social-button--twitter" aria-label="ResearchGate">
+              <i class="fab fa-researchgate"></i>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-    
+
+    <div class="right">
+      <div class="topnav" id="myTopnav">
+        <a href="#education">Education</a>
+        <a href="#publications">Publications</a>
+        <a href="#project">Projects</a>
+        <a href="#awards">Awards</a>
+        <a href="#employment">Employment</a>
+        <a href="#references">References</a>
+        <button type="submit" class="outline"
+          onclick="window.location.href='https://gmuedu-my.sharepoint.com/:b:/r/personal/badhika5_gmu_edu/Documents/Bikram_Adhikari_Resume.pdf?csf=1&amp;web=1&amp;e=Ixurn6'">Resume</button>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+      </div>
+
+      <div class="inner">
+        <div class="dataset-banner">
+          <h1>
+            <span class="me-flame"></span>
+            <a href="https://bikram11.github.io/Website_R2ND2/">Repeated Route Naturalistic Driving Dataset</a>
+          </h1>
+        </div>
+
+        <section id="education">
+          <h1>🎓 Education</h1>
+          <h3>George Mason University <em style="font-size:0.8em">PhD in Computer Science | January 2021 -
+              Present</em></h3>
+          <p>Advisor: <b>Dr. Zoran Durić</b></p>
+          <p><span class="fa fa-star checked"></span> Recipient of <b>Digital Innovation Summer Fellowship for
+              Applied Research</b>, Summer 2022.</p>
+          <p><span class="fa fa-star checked"></span> <b>NSF Research Traineeship (NRT)</b> Fellow 2021-22</p>
+          <p>School of Computing, Fairfax, Virginia, 22032</p>
+          <h3>Institute of Engineering <em style="font-size:0.8em">Bachelor in Computer Engineering | September
+              2014 - August 2018</em></h3>
+          <p>Advisor: <b>Professor Dr. Arun Kumar Timalsina</b></p>
+          <p>Worked on <b>Electroencephalogram (EEG) based home automation and directional classifiers</b></p>
+          <p>Department of Computer Science and Electronics, Central Campus, Pulchowk, Nepal, 44600</p>
+        </section>
+
+        <section id="research">
+          <h1>🧭 Research Interests</h1>
+          <button type="submit" class="outline">Behavioral Analysis and Human Factor Research</button>
+          <button type="submit" class="outline">Computer Vision and Deep Learning</button>
+          <button type="submit" class="outline">Connected-vehicle, Vehicular sensors and V2V, V2X information
+            sharing</button>
+          <button type="submit" class="outline">Simulation and Modeling</button>
+        </section>
+
+        <section id="technical">
+          <h1>🛠️ Technical Expertise</h1>
+          <p>Click a category for detail</p>
+          <button type="submit" class="outline" onclick="ShowAndHide('Data_explore')">Data exploration and
+            Analysis</button>
+          <div id="Data_explore_details" style="display:none">
+            <button type="submit" class="outline purple-white">Python</button>
+            <button type="submit" class="outline purple-white">Tensorflow</button>
+            <button type="submit" class="outline purple-white">Matlab</button>
+          </div>
+          <button type="submit" class="outline" onclick="ShowAndHide('Web_develop')">Web Development</button>
+          <div id="Web_develop_details" style="display:none">
+            <button type="submit" class="outline purple-white">HTML5</button>
+            <button type="submit" class="outline purple-white">CSS</button>
+            <button type="submit" class="outline purple-white">jQuery</button>
+            <button type="submit" class="outline purple-white">JavaScript</button>
+            <button type="submit" class="outline purple-white">React</button>
+            <button type="submit" class="outline purple-white">Node.js</button>
+          </div>
+          <button type="submit" class="outline" onclick="ShowAndHide('Mobile_develop')">Mobile Application
+            Development</button>
+          <div id="Mobile_develop_details" style="display:none">
+            <button type="submit" class="outline purple-white">Flutter</button>
+            <button type="submit" class="outline purple-white">Xamarin</button>
+          </div>
+          <button type="submit" class="outline" onclick="ShowAndHide('Expert_program')">Expert Programming
+            Domain</button>
+          <div id="Expert_program_details" style="display:none">
+            <button type="submit" class="outline purple-white">Python3</button>
+            <button type="submit" class="outline purple-white">Java</button>
+          </div>
+          <button type="submit" class="outline" onclick="ShowAndHide('Simulation')">Simulation and Modeling</button>
+          <div id="Simulation_details" style="display:none">
+            <button type="submit" class="outline purple-white">Matlab</button>
+            <button type="submit" class="outline purple-white">Tensorflow</button>
+            <button type="submit" class="outline purple-white">CARLA (CARs Learning to Act)</button>
+          </div>
+        </section>
+
+        <section id="publications">
+          <h1>📜 Publications</h1>
+          <h3>First Author</h3>
+          <p>Adhikari, Bikram et al. "<b><a href="https://ieeexplore.ieee.org/document/8586823">EEG based
+                Directional Signal Classification using RNN Variants</a></b>." 2018 IEEE 3rd International
+            Conference on Computing, Communication and Security (ICCCS) (2018): 218-223.</p>
+          <p>Adhikari, Bikram et al. "<b><a href="https://bikram11.github.io/Website_R2ND2/">Repeated Route
+                Naturalistic Driver Behavior Analysis using Motion and Gaze Measurements</a></b>." IEEE
+            Transactions on Intelligent Transportation Systems (2023, Under Review)</p>
+
+          <h3>Open Review</h3>
+          <p>Adhikari, Bikram. <b><a href="https://arxiv.org/abs/2308.13406">"Using Visual and Vehicular Sensors
+                for Driver Behavior Analysis: A Survey"</a></b>.</p>
+          <p>Timalsina, Arun K. et al. <b><a href="https://arxiv.org/abs/2304.11068">"Color based classification of
+                EEG Signals for people with severe locomotive disorder"</a></b>.</p>
+        </section>
+
+        <section id="project">
+          <h1>🚦 Projects</h1>
+          <p>Click a project for detail</p>
+
+          <button class="outline" open-modal="openModal_0">Driver Gaze Mapping in real time</button>
+          <div id="openModal_0" class="modal">
+            <div class="modal-content">
+              <span class="close" close-modal>&times;</span>
+              <h2>Driver Gaze Mapping in real time</h2>
+              <iframe
+                src="https://docs.google.com/presentation/d/e/2PACX-1vRFwFIldJ0hoYKIye43QzR7di8LGFQbnf-2eIoJteos1xP4n5ft3ZrqUGhIIYPCiw/embed?start=false&loop=false&delayms=3000"
+                frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true"
+                webkitallowfullscreen="true"></iframe>
+            </div>
+          </div>
+
+          <button class="outline" open-modal="openModal_2">Guided pathways for individuals with mobility
+            impairments</button>
+          <div id="openModal_2" class="modal">
+            <div class="modal-content">
+              <span class="close" close-modal>&times;</span>
+              <h2>Guided pathways for individuals with mobility impairments</h2>
+              <iframe
+                src="https://docs.google.com/presentation/d/e/2PACX-1vQfE6jSHLCUkKj2OJbSBCpOB5GDvOZltd-ORlXTB8KNArrUaLDT2utFOBRStEZexg/embed?start=false&loop=false&delayms=3000"
+                frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true"
+                webkitallowfullscreen="true"></iframe>
+            </div>
+          </div>
+
+          <button class="outline" open-modal="openModal_3">Digital Storyboard for Guided pathways analysis</button>
+          <div id="openModal_3" class="modal">
+            <div class="modal-content">
+              <span class="close" close-modal>&times;</span>
+              <h2>Digital Storyboard for Guided pathways analysis</h2>
+              <iframe src="https://bikram11.github.io/PMS_Digital_Story/" frameborder="0" width="480" height="389"
+                allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+            </div>
+          </div>
+
+          <button class="outline" open-modal="openModal_4">EEG Based Directional Signal Classification using RRN
+            Variants</button>
+          <div id="openModal_4" class="modal">
+            <div class="modal-content">
+              <span class="close" close-modal>&times;</span>
+              <h2>EEG Based Directional Signal Classification using RRN Variants</h2>
+              <iframe
+                src="https://docs.google.com/presentation/d/e/2PACX-1vRHGI_6eHXnrbvsGFYLLinbxHv7reGv0GB49uymq_pNTM_ZwKjOBnl_A9ueMgEuGY4AIa3fiRiDkIr5/embed?start=false&loop=false&delayms=3000"
+                frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true"
+                webkitallowfullscreen="true"></iframe>
+            </div>
+          </div>
+        </section>
+
+        <section id="employment">
+          <h1>💼 Employment</h1>
+          <h3>George Mason University <em style="font-size:0.8em">Graduate Research/Teaching Assistant | January
+              2021 - Present</em></h3>
+          <p>Working on <b>Driver Behavior Analysis and connected vehicles</b> under <b>Commonwealth Cyber
+              Initiative (CCI)</b> lab with Dr. Zoran Durić and Dr. Duminda Wijesekera</p>
+          <p><span class="fa fa-star checked"></span> <a
+              href="https://gmuedu-my.sharepoint.com/:b:/g/personal/badhika5_gmu_edu/ETvR9zJukIhBhZO9WAih4ZYBl7DUlteSuEk5z3oqfvBoyg?e=eOpak8"><b>Estimation
+                of Vehicular Velocity based on Non-Intrusive stereo camera: RMSE score lowered from baseline by
+                0.17</b></a></p>
+          <p>CS 211: <b>Object Oriented Programming</b> in Java for Spring 2021</p>
+          <p>CS 484/CS 584: <b>Data Mining</b> for Fall 2021, Spring 2022</p>
+          <h3>LIS Nepal Pvt. Ltd. <em style="font-size:0.8em">Software Engineer | September 2018 - December
+              2020</em></h3>
+          <p>Java Developer involved in <b>POS retail system</b> implementation with multiple clients.</p>
+          <p><span class="fa fa-star checked"></span> Awarded <b>Rising Star of the Year 2019</b>.</p>
+          <h3>Prixa Technologies Pvt. Ltd. <em style="font-size:0.8em">Intern / Mid-Level Developer | December
+              2016 - December 2018</em></h3>
+          <p>Worked on <b>Django and Xamarin</b> based cross-platform Android projects.</p>
+          <p>Shankhar Pokhrel: Android application established as the <b>first Province (State)</b> support
+            application in Nepal.</p>
+        </section>
+
+        <section id="awards">
+          <h1>🏔️ Achievements and Awards</h1>
+          <p><span class="fa fa-star checked"></span> Won Second Prize in <b>Virginia Datathon</b> organized by
+            Library of Virginia</p>
+          <p><span class="fa fa-star checked"></span> Won First Prize in <b>Assistive Technologies Hackathon
+              2018</b> organized by Maker Valley in collaboration with Thapathali Engineering Campus and Disaster
+            Hack</p>
+          <p><span class="fa fa-star checked"></span> Second Runner up in <b>ICT and its use for assistance for
+              people with locomotive disorder</b> organized by Ford Foundation in collaboration with Lirneasia,
+            ICT Nepal and Internet Society Nepal</p>
+          <p><span class="fa fa-star checked"></span> Won Mentors' Choice Award in <b>Genese Codecamp</b> organized
+            by Institute of Engineering Pashimanchal Campus in collaboration with Genese Infosys</p>
+          <p><span class="fa fa-star checked"></span> <b>Hack a Week by Locus 2017</b> Category winner for Fun and
+            Entertainment with an Android game "Let's count"</p>
+        </section>
+
+        <section>
+          <h1 id="references">📡 References</h1>
+
+          <p>Dr. Zoran Duric | <em>George Mason University — Associate Professor (Primary Advisor)</em></p>
+          <div class="social-buttons">
+            <a href="mailto:zduric@gmu.edu" class="social-buttons__button social-button social-button--mail"
+              aria-label="Email">
+              <i class="fa fa-envelope"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/zoran-duric-2988851"
+              class="social-buttons__button social-button social-button--linkedin" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.researchgate.net/profile/Zoran-Duric"
+              class="social-buttons__button social-button social-button--twitter" aria-label="ResearchGate">
+              <i class="fab fa-researchgate"></i>
+            </a>
+          </div>
+
+          <p>Dr. Arun Kumar Timalsina | <em>Tribhuvan University — Professor (Undergraduate Advisor)</em></p>
+          <div class="social-buttons">
+            <a href="mailto:t.arun@ioe.edu.np" class="social-buttons__button social-button social-button--mail"
+              aria-label="Email">
+              <i class="fa fa-envelope"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/arun-timalsina-84aa4b9"
+              class="social-buttons__button social-button social-button--linkedin" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+
+          <p>Binamra Kandel | <em>Logic Information Systems — Senior Software Engineer</em></p>
+          <div class="social-buttons">
+            <a href="mailto:bkandel@logicinfo.com" class="social-buttons__button social-button social-button--mail"
+              aria-label="Email">
+              <i class="fa fa-envelope"></i>
+            </a>
+            <a href="https://ca.linkedin.com/in/binamrakandel"
+              class="social-buttons__button social-button social-button--linkedin" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </section>
+
+        <div class="terrain terrain--footer" aria-hidden="true">
+          <div class="range r1"></div>
+          <div class="range r2"></div>
+          <div class="range r3"></div>
+          <div class="range r4"></div>
+          <div class="pixel-car">
+            <span class="car-body"></span>
+            <span class="car-cab"></span>
+            <span class="car-wheel w1"></span>
+            <span class="car-wheel w2"></span>
+          </div>
+          <div class="road"></div>
+        </div>
+
+        <div class="site-footer">
+          <p style="font-size: 14px;">Hi Visitor Number <img
+              src="https://hitwebcounter.com/counter/counter.php?page=8002682&style=0007&nbdigits=5&type=ip&initCount=0"
+              title="Free Counter" alt="web counter" border="0" />. Welcome to my website.</p>
+          <a style="font-size: 10px;" href="https://www.hitwebcounter.com" target="_blank" rel="noopener">Counter
+            Courtesy hitwebcounter</a>
+        </div>
+      </div>
+    </div>
   </div>
-  
-  
-  
-</div>
+
+  <script>
+    $('[open-modal]').on('click', function () {
+      var id = $(this).attr('open-modal');
+      document.getElementById(id).style.display = "block";
+    });
+
+    $('[close-modal]').on('click', function () {
+      $(this).parents('.modal')[0].style.display = 'none';
+    });
+
+    $('.modal').on('click', function (e) {
+      if (e.target !== this) { return };
+      $(this)[0].style.display = 'none';
+    });
+  </script>
+</body>
+
+</html>

@@ -1,197 +1,706 @@
-*, *:before, *:after {
-  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
- }
+/* ============================================================
+   Bikram Adhikari — 8-bit resume theme
+   Palette rooted in the Nepali flag (crimson / blue / white+gold)
+   with a Himalayan skyline + driver-behavior-research road motif.
+   ============================================================ */
 
-html
-{
-	font-size:100%;
+:root {
+  --crimson: #c8102e;
+  --crimson-dark: #8a0d20;
+  --flag-blue: #0b2d6b;
+  --flag-blue-light: #1d4fa0;
+  --night: #0b1222;
+  --night-2: #142138;
+  --dusk: #2a2550;
+  --frost: #bcd4e6;
+  --steel: #5b84ab;
+  --cream: #f4ecd8;
+  --cream-dark: #e4d8b8;
+  --ink: #2b2318;
+  --gold: #ffd54a;
+  --white: #fdfdf5;
+  --px: 4px;
 }
 
-body
-{
-	-webkit-font-smoothing:antialiased;
-	color:#333332;
-	font-family:Lora, serif;
-	font-size:18px;
-	font-weight:400;
-	line-height:1.4;
-	text-rendering:optimizeLegibility;
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
 }
 
-.skill-set li:hover
-{
-	background:#3498db;
+html {
+  font-size: 100%;
 }
 
-h1
-{
-	color:rgba(0,0,0,.75);
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--night);
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
-.wrapper
-{
-	height:100%;
+h1, h2, h3 {
+  font-family: 'Press Start 2P', cursive, monospace;
+  letter-spacing: 0.5px;
 }
 
-.left
-{
-	background-color:rgba(0,0,0,.025);
-	border-right:1px solid rgba(0,0,0,.05);
-	float:right;
-	height:100%;
-	margin-left:-1px;
-	min-width:256px;
-	position:fixed;
-	width:33.33%;
-  
+a {
+  color: inherit;
 }
 
-.right
-{
-	float:right;
-	height:100%;
-	position:relative;
-	width:66.66%;
+img {
+  image-rendering: auto;
 }
 
-
-.name-hero
-{
-	background:rgba(0,0,0,.001);
-	bottom:0;
-	height:290px;
-	left:0;
-	margin:auto;
-	position:absolute;
-	right:0;
-	top:0;
-	width:85%;
+/* subtle CRT scanline overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.09) 0px,
+    rgba(0, 0, 0, 0.09) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.4;
 }
 
-.me-img
-{
-	background:url(https://media-exp1.licdn.com/dms/image/C4E03AQGnLq_IB_mf8Q/profile-displayphoto-shrink_400_400/0/1631022739752?e=1648684800&v=beta&t=eICUjHeH_g9GQEItmEMK1j2gCADwqfjrlccSD_5za58) no-repeat center center ;
-	background-size:100%;
-  background-position:0px;
-	border-radius:100%;
-	height:150px;
-	margin:0 auto;
-	position:relative;
-	width:150px;
+/* ---------- reusable pixel-notch frame ---------- */
+.pixel-corners {
+  clip-path: polygon(
+    0 10px, 10px 10px, 10px 0,
+    calc(100% - 10px) 0, calc(100% - 10px) 10px, 100% 10px,
+    100% calc(100% - 10px), calc(100% - 10px) calc(100% - 10px), calc(100% - 10px) 100%,
+    10px 100%, 10px calc(100% - 10px), 0 calc(100% - 10px)
+  );
 }
 
-.name-hero h1
-{
-	font-family:Open Sans, sans-serif;
-	font-size:1.5em;
-	text-align:center;
+.pixel-corners-sm {
+  clip-path: polygon(
+    0 5px, 5px 5px, 5px 0,
+    calc(100% - 5px) 0, calc(100% - 5px) 5px, 100% 5px,
+    100% calc(100% - 5px), calc(100% - 5px) calc(100% - 5px), calc(100% - 5px) 100%,
+    5px 100%, 5px calc(100% - 5px), 0 calc(100% - 5px)
+  );
 }
 
-.name-hero h1 em
-{
-	color:rgba(0,0,0,.3);
-	font-style:normal;
-	font-weight:700;
+/* ============================================================
+   Top navigation
+   ============================================================ */
+.topnav {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  overflow: hidden;
+  background: var(--crimson);
+  border-bottom: var(--px) solid var(--flag-blue);
+  display: flex;
+  align-items: center;
 }
 
-.name-hero p
-{
-	color:rgba(0,0,0,.75);
-	font-size:.75em;
-	line-height:1.5;
-	margin:0 8px 0 0;
-	text-align:center;
+.topnav a {
+  float: left;
+  display: block;
+  color: var(--white);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  transition: none;
 }
 
-.name-hero .name-text
-{
-	margin:0 auto;
-	width:85%;
+.topnav a:hover {
+  background: var(--flag-blue);
+  color: var(--gold);
 }
 
-.inner
-{
-	margin:0 auto;
-	max-width:975px;
-	padding:3em;
+.topnav a.active {
+  background: var(--flag-blue-light);
+  color: white;
 }
 
-.inner h1
-{
-	font-size:1.75em;
+.topnav .icon {
+  display: none;
 }
 
-.inner p
-{
-	color:rgba(0,0,0,.5);
+.topnav button.outline {
+  margin-left: auto;
+  margin-right: 10px;
 }
 
-.inner p em
-{
-	color:rgba(0,0,0,1);
-	font-style:normal;
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {
+    display: none;
+  }
+
+  .topnav a.icon {
+    float: right;
+    display: block !important;
+  }
 }
 
-.inner section
-{
-	margin:100px auto;
+@media screen and (max-width: 600px) {
+  .topnav.responsive {
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
 }
 
-ul
-{
-	list-style-type:none;
-	margin-top:-10px;
-	max-width:570px;
-	padding:0;
+/* ============================================================
+   Layout
+   ============================================================ */
+.wrapper {
+  height: 100%;
 }
 
-.skill-set li
-{
-	background:rgba(0,0,0,.75);
-	border-radius:5px;
-	color:#FFF;
-	display:inline-block;
-	list-style:none;
-	margin:15px 15px 0 0;
-	padding:10px;
-	text-align:justify;
+.left {
+  background: linear-gradient(to bottom, var(--night) 0%, var(--night-2) 38%, var(--dusk) 62%, var(--crimson-dark) 100%);
+  border-right: var(--px) solid var(--ink);
+  float: right;
+  height: 100%;
+  margin-left: -1px;
+  min-width: 300px;
+  position: fixed;
+  width: 33.33%;
+  overflow: hidden;
+}
+
+.right {
+  float: right;
+  min-height: 100%;
+  position: relative;
+  width: 66.66%;
+  background: var(--night);
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1.5px),
+    radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1.5px);
+  background-size: 140px 140px, 90px 90px;
+  background-position: 0 0, 45px 60px;
 }
 
 @media screen and (max-width: 48em) {
-	.right,.left
-	{
-		float:none;
-    position:relative !important;
-		width:100%;
-    min-height:500px;
-	}
-  .handmade {
-  text-align:center !important;
-  margin-top:0px !important;
+  .right,
+  .left {
+    float: none;
+    position: relative !important;
+    width: 100%;
+    min-height: auto;
+  }
+
+  .left {
+    height: auto;
+    padding-bottom: 40px;
+  }
+
+  .clearfix:after {
+    content: " ";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+  }
+
+  body {
+    font-size: 17px;
+  }
 }
 
-@media screen and (max-width: 75em) {
-    body
-{ font-size:16px;}
+/* ============================================================
+   Himalayan skyline + road motif (sidebar + footer scenes)
+   ============================================================ */
+.terrain {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 46%;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-@media screen and (max-width: 60em) {
-    body
-{ font-size:14px;}
+.terrain .range {
+  position: absolute;
+  left: -5%;
+  width: 110%;
+  bottom: 0;
 }
-.clearfix:after {
-   content: " "; /* Older browser do not support empty content */
-   visibility: hidden;
-   display: block;
-   height: 0;
-   clear: both;
+
+.terrain .r1 { height: 92%; background: var(--frost);  opacity: 0.55; clip-path: polygon(0 100%,0 55%,8% 40%,16% 58%,26% 30%,34% 52%,44% 22%,54% 50%,64% 34%,74% 56%,84% 38%,92% 60%,100% 46%,100% 100%); animation: drift1 16s ease-in-out infinite; }
+.terrain .r2 { height: 75%; background: var(--steel);  opacity: 0.75; clip-path: polygon(0 100%,0 62%,10% 44%,20% 64%,30% 38%,40% 60%,50% 30%,60% 58%,70% 40%,80% 64%,90% 46%,100% 60%,100% 100%); animation: drift2 20s ease-in-out infinite; }
+.terrain .r3 { height: 55%; background: var(--flag-blue-light); clip-path: polygon(0 100%,0 70%,12% 48%,24% 68%,36% 44%,48% 66%,60% 40%,72% 66%,84% 46%,100% 68%,100% 100%); animation: drift1 24s ease-in-out infinite reverse; }
+.terrain .r4 { height: 34%; background: var(--night-2); clip-path: polygon(0 100%,0 78%,14% 56%,28% 76%,42% 52%,56% 76%,70% 54%,84% 78%,100% 58%,100% 100%); }
+
+@keyframes drift1 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
 }
-.handmade {
-  text-align:right;
-  margin-top:100px;
+@keyframes drift2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
 }
-.handmade em {
-  font-family: 'Shadows Into Light', cursive;
-  font-size: 1.25em;
-  margin-left:5px;
+
+.terrain .road {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 12px;
+  background: #1a1a1a;
+  border-top: 2px solid #000;
+}
+
+.terrain .road::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 200%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: repeating-linear-gradient(to right, var(--gold) 0 10px, transparent 10px 20px);
+  animation: roadmove 2.4s linear infinite;
+}
+
+@keyframes roadmove {
+  from { transform: translate(0, -50%); }
+  to { transform: translate(-20px, -50%); }
+}
+
+.pixel-car {
+  position: absolute;
+  bottom: 12px;
+  left: 10%;
+  width: 28px;
+  height: 14px;
+  z-index: 5;
+  animation: drive 7s linear infinite;
+}
+
+@keyframes drive {
+  0% { left: -10%; }
+  100% { left: 110%; }
+}
+
+.pixel-car .car-body { position: absolute; left: 0; bottom: 4px; width: 28px; height: 6px; background: var(--crimson); }
+.pixel-car .car-cab  { position: absolute; left: 6px; bottom: 9px; width: 14px; height: 6px; background: var(--crimson); }
+.pixel-car .car-wheel { position: absolute; bottom: 0; width: 6px; height: 6px; background: var(--ink); }
+.pixel-car .w1 { left: 3px; }
+.pixel-car .w2 { left: 18px; }
+
+.terrain--footer {
+  position: relative;
+  height: 160px;
+  margin-top: 60px;
+}
+
+/* ============================================================
+   Sidebar — profile / hero
+   ============================================================ */
+.name-hero {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 40px 24px 20px;
+}
+
+.emblem {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  z-index: 3;
+}
+
+.emblem .sun {
+  position: absolute;
+  inset: 7px;
+  background: var(--gold);
+  box-shadow: 0 0 10px 2px rgba(255, 213, 74, 0.6);
+  animation: glow 3s ease-in-out infinite;
+}
+
+.emblem .moon {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  background: var(--white);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.emblem .moon::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--night-2);
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 6px 1px rgba(255, 213, 74, 0.5); }
+  50% { box-shadow: 0 0 14px 4px rgba(255, 213, 74, 0.85); }
+}
+
+.me-img {
+  background: url('../images/IMG_0271.jpg') no-repeat center center;
+  background-size: 177%;
+  background-position: -48px;
+  height: 140px;
+  width: 140px;
+  margin: 0 auto;
+  position: relative;
+  border: var(--px) solid var(--ink);
+  box-shadow: 0 0 0 4px var(--cream), 0 0 0 8px var(--crimson), 0 0 0 11px var(--flag-blue);
+}
+
+.me-flame {
+  background: url('../images/icons8-fire.gif') no-repeat center center;
+  background-size: contain;
+  height: 34px;
+  width: 34px;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+  margin-right: 6px;
+}
+
+.name-hero .name-text {
+  margin: 18px auto 0;
+  width: 100%;
+  text-align: center;
+}
+
+.name-hero h1 {
+  font-size: 1.1em;
+  color: var(--white);
+  text-shadow: 2px 2px 0 var(--crimson-dark);
+  margin: 10px 0 6px;
+}
+
+.name-hero h1 em {
+  color: var(--gold);
+  font-style: normal;
+}
+
+.tagline {
+  display: inline-block;
+  font-family: 'VT323', monospace;
+  font-size: 0.85em;
+  color: var(--night);
+  background: var(--gold);
+  padding: 4px 10px;
+  margin-bottom: 14px;
+}
+
+.hud {
+  background: rgba(11, 18, 34, 0.55);
+  border: 2px solid var(--frost);
+  padding: 10px 14px;
+  margin: 0 auto 14px;
+  max-width: 260px;
+}
+
+.hud p {
+  color: var(--frost);
+  font-size: 0.85em;
+  margin: 3px 0;
+  text-align: center;
+}
+
+.bio-box {
+  background: rgba(244, 236, 216, 0.08);
+  border-left: 3px solid var(--gold);
+  padding: 10px 14px;
+  margin: 0 auto 14px;
+  max-width: 280px;
+  text-align: left;
+}
+
+.bio-box p {
+  color: var(--cream);
+  font-size: 0.85em;
+  margin: 0 0 10px;
+}
+
+.bio-box b {
+  color: var(--gold);
+}
+
+.bio-box a {
+  color: var(--frost);
+  text-decoration: underline;
+}
+
+.social-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
+  position: relative;
+  z-index: 2;
+}
+
+.social-buttons__button {
+  margin: 0;
+}
+
+.social-button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  width: 42px;
+  height: 42px;
+  text-decoration: none;
+  background: var(--cream);
+  border: 3px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  color: var(--ink);
+  transition: transform 0.08s linear;
+}
+
+.social-button:hover,
+.social-button:focus {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
+  color: var(--crimson);
+}
+
+.social-button i {
+  font-size: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.social-button::after {
+  display: none;
+}
+
+/* ============================================================
+   Right column content
+   ============================================================ */
+.inner {
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 2.5em 2em 1em;
+  position: relative;
+  z-index: 2;
+}
+
+.dataset-banner {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.dataset-banner h1 {
+  display: inline-block;
+  font-size: 0.95em;
+  background: var(--cream);
+  color: var(--ink);
+  padding: 14px 18px;
+  border: 3px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--crimson);
+}
+
+.dataset-banner a {
+  text-decoration: none;
+  color: var(--flag-blue);
+}
+
+.inner section {
+  margin: 0 0 56px;
+  background: var(--cream);
+  border: var(--px) solid var(--ink);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.5);
+  padding: 26px 28px 30px;
+}
+
+.inner section h1 {
+  font-size: 1.05em;
+  color: var(--crimson);
+  margin: 0 0 18px;
+  padding-bottom: 12px;
+  border-bottom: 3px dashed var(--flag-blue);
+}
+
+.inner section h3 {
+  font-size: 0.85em;
+  color: var(--flag-blue);
+  margin: 22px 0 6px;
+}
+
+.inner p {
+  color: var(--ink);
+  opacity: 0.85;
+}
+
+.inner p em {
+  color: var(--crimson-dark);
+  font-style: normal;
+  font-weight: normal;
+}
+
+.inner p b {
+  color: var(--flag-blue);
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  font-family: 'Press Start 2P', cursive, monospace;
+}
+
+button.outline {
+  position: relative;
+  z-index: 3;
+  margin: 8px 6px 0 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 11px;
+  border: 3px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  border-radius: 0;
+  padding: 10px 18px;
+  text-transform: uppercase;
+  transition: transform 0.08s linear;
+}
+
+button.outline a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button.outline:hover {
+  color: var(--crimson);
+}
+
+button.outline:active,
+button.outline:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+button.purple-white {
+  font-size: 9px;
+  color: var(--flag-blue);
+  border-color: var(--flag-blue);
+  background: var(--white);
+  box-shadow: 3px 3px 0 var(--flag-blue);
+}
+
+button.purple-white:hover {
+  color: var(--white);
+  background: var(--flag-blue);
+}
+
+.fa.checked,
+.fa-star.checked {
+  color: var(--gold);
+}
+
+/* ---------- modals ---------- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(11, 18, 34, 0.75);
+}
+
+.modal-content {
+  background: var(--cream);
+  margin: 10% auto;
+  padding: 24px;
+  border: var(--px) solid var(--ink);
+  box-shadow: 8px 8px 0 var(--crimson);
+  width: 55%;
+  max-width: 560px;
+  text-align: left;
+}
+
+.modal-content h2 {
+  font-size: 0.9em;
+  color: var(--crimson);
+  margin-top: 0;
+}
+
+.modal-content iframe {
+  max-width: 100%;
+}
+
+.close {
+  color: var(--ink);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.close:hover,
+.close:focus {
+  color: var(--crimson);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ---------- footer ---------- */
+.site-footer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 10px 0 36px;
+  color: var(--frost);
+  font-size: 0.8em;
+}
+
+.site-footer a {
+  color: var(--gold);
+}
+
+@media screen and (max-width: 48em) {
+  .modal-content {
+    width: 90%;
+    margin: 20% auto;
+  }
+
+  .terrain--footer {
+    height: 110px;
+  }
 }
