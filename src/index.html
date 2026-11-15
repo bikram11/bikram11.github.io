@@ -114,6 +114,8 @@
             </div>
             <div class="dome"></div>
             <div class="base"><span></span><span></span></div>
+            <div class="flag-tail left"></div>
+            <div class="flag-tail right"></div>
           </div>
         </div>
 
@@ -128,11 +130,15 @@
 
         <div class="crosswalk" style="left:55%"></div>
 
-        <div class="person walk shirt-gold" style="animation-duration:13s; animation-delay:-4s;">
+        <div class="person walk shirt-gold">
           <span class="head"></span><span class="torso"></span>
           <span class="leg l"></span><span class="leg r"></span>
         </div>
-        <div class="person cross shirt-teal" style="left:56%;">
+        <div class="person walk shirt-sage">
+          <span class="head"></span><span class="torso"></span>
+          <span class="leg l"></span><span class="leg r"></span>
+        </div>
+        <div class="person cross shirt-teal facing-left" style="left:60%;">
           <span class="head"></span><span class="torso"></span>
           <span class="leg l"></span><span class="leg r"></span>
         </div>
@@ -182,14 +188,9 @@
           
 
           <div class="bio-box">
-            <p><b>Greetings!!</b> I am a Ph.D. student in the Department of Computer Science at George Mason
-              University. I work under Dr. Zoran Durić and Dr. Duminda Wijesekera at the
-              <a href="https://www.gmu.edu/news/2019-12/mason-unveil-new-cyber-living-innovation-lab-part-cci">Cyber
-                Living Innovation Lab</a>.</p>
-            <p>My research interest lies in algorithmic human behavioral analysis and computer vision. Currently
-              I'm working on <b>driver behavioral analysis</b> in simulated and real-world driving. Another ongoing
-              line of research is <b>connected perception</b> at signalized intersections using V2V and V2X
-              sensor mapping.</p>
+            <p><b>Greetings and Namaste!!</b><br>I am Bikram Adhikari, a Research Scientist by profession and a problem solver at heart.<br> 
+              I work as a Research/Data Scientist at <a href="https://driverresearchinstitute.com">Driver Research Institute</a> where I am 
+              trying to go beyond the crash and understand the science behind driver behavior.</p>
           </div>
 
           <div class="social-buttons">
@@ -428,6 +429,8 @@
               </div>
               <div class="dome"></div>
               <div class="base"><span></span><span></span></div>
+              <div class="flag-tail left"></div>
+              <div class="flag-tail right"></div>
             </div>
           </div>
 
@@ -467,20 +470,28 @@
 
           <div class="crosswalk" style="left:68%"></div>
 
-          <div class="person walk shirt-gold" style="animation-duration:15s; animation-delay:-3s;">
+          <div class="person walk shirt-gold">
             <span class="head"></span><span class="torso"></span>
             <span class="leg l"></span><span class="leg r"></span>
           </div>
-          <div class="person walk shirt-teal" style="bottom:calc(var(--scene-ground-height) + 4px); animation-duration:19s; animation-delay:-11s;">
+          <div class="person walk shirt-teal" style="bottom:calc(var(--scene-ground-height) + 4px);">
+            <span class="head"></span><span class="torso"></span>
+            <span class="leg l"></span><span class="leg r"></span>
+          </div>
+          <div class="person walk shirt-sage">
+            <span class="head"></span><span class="torso"></span>
+            <span class="leg l"></span><span class="leg r"></span>
+          </div>
+          <div class="person walk shirt-gold">
             <span class="head"></span><span class="torso"></span>
             <span class="leg l"></span><span class="leg r"></span>
           </div>
 
-          <div class="person cross" style="left:68%;">
+          <div class="person cross" style="left:70%;">
             <span class="head"></span><span class="torso"></span>
             <span class="leg l"></span><span class="leg r"></span>
           </div>
-          <div class="person cross shirt-sage" style="left:71.5%;">
+          <div class="person cross shirt-sage facing-left" style="left:74%;">
             <span class="head"></span><span class="torso"></span>
             <span class="leg l"></span><span class="leg r"></span>
           </div>
@@ -538,6 +549,256 @@
       </div>
     </div>
   </div>
+  <script>
+    // Pedestrian life + traffic-yield, driven as one JS simulation.
+    //
+    // Every `.person` is fundamentally a sidewalk walker (`left` drifts
+    // at a steady pace, wrapping at the scene edges like the cars do).
+    // Each time it passes a `.crosswalk`'s centerline it rolls the dice;
+    // on a hit it locks `left` to that centerline and crosses the
+    // road's depth (`bottom`) instead — but the two crossing directions
+    // mean different things and are NOT symmetric:
+    //
+    //   - top -> bottom ("cross-out"): walking off the sidewalk, away
+    //     from the viewer, into the distance. It disappears at the far
+    //     (bottom) end and does not come back as that same walk — it's
+    //     gone. (Internally it waits off-stage, invisible past the
+    //     scene's clipped edge, then later re-enters as a fresh
+    //     cross-in elsewhere, so the DOM node is recycled rather than
+    //     the population slowly draining to zero.)
+    //   - bottom -> top ("cross-in"): arriving out of that same
+    //     distance, walking up onto the sidewalk. Reaching the top is
+    //     what lets it join the sidewalk crowd — it becomes a normal
+    //     walker only once it actually arrives, never by reappearing
+    //     mid-crossing.
+    //
+    // Elements authored with the `cross` class start the page already
+    // mid cross-in, at the `left` already set on them in the markup,
+    // so there's visible arriving traffic immediately on load.
+    //
+    // Crossing state is reflected on the element as `.is-crossing` so
+    // the traffic-yield pass below (which brakes cars/buses for any
+    // pedestrian currently in the road) doesn't need its own copy of
+    // this logic — it just reads that class.
+    (function () {
+      var CROSS_CHANCE = 0.55;
+      var CROSS_COOLDOWN_MS = 3500;
+      var RESPAWN_DELAY_MIN_MS = 1200;
+      var RESPAWN_DELAY_MAX_MS = 4000;
+      var EDGE_MARGIN_PX = 16;
+      var JITTER_PX = 4;
+      var STOP_GAP = 26;
+      var RESUME_GAP = 44;
+      var ENTRY_BOTTOM_OFFSET = 6; // above ground height: the "back sidewalk" lip
+      var EXIT_BOTTOM = -26; // below 0: clipped by the scene's own overflow:hidden
+
+      function groundHeightPx(scene) {
+        var n = parseFloat(getComputedStyle(scene).getPropertyValue('--scene-ground-height'));
+        return isNaN(n) ? 24 : n;
+      }
+
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      function randomCrosswalkLeftPct(sceneState, sceneWidth) {
+        var centers = crosswalkCentersPx(sceneState, sceneState.scene.getBoundingClientRect().left);
+        if (!centers.length) return Math.random() * 100;
+        var c = centers[Math.floor(Math.random() * centers.length)];
+        var jittered = c + (Math.random() * JITTER_PX * 2 - JITTER_PX);
+        return jittered / sceneWidth * 100;
+      }
+
+      function makePedestrians(scene) {
+        var people = scene.querySelectorAll('.person');
+        var crosswalks = scene.querySelectorAll('.crosswalk');
+        var ground = groundHeightPx(scene);
+
+        var states = [];
+        for (var i = 0; i < people.length; i++) {
+          var el = people[i];
+          var dir = el.classList.contains('facing-left') ? -1 : 1;
+          var seedArriving = el.classList.contains('cross');
+          var leftPct = parseFloat(el.style.left);
+          if (isNaN(leftPct)) leftPct = Math.random() * 100;
+
+          el.style.setProperty('--person-facing', dir > 0 ? 1 : -1);
+          if (seedArriving) el.classList.add('is-crossing');
+
+          states.push({
+            el: el,
+            dir: dir,
+            leftPct: leftPct,
+            speedPxPerSec: 16 + Math.random() * 10,
+            mode: seedArriving ? 'cross-in' : 'walk',
+            crossT: seedArriving ? Math.random() * 0.5 : 0,
+            crossDuration: 1.8 + Math.random() * 0.6,
+            cooldownUntil: 0,
+            respawnAt: 0,
+            originalBottom: el.style.bottom || ''
+          });
+        }
+
+        return { scene: scene, ground: ground, crosswalks: crosswalks, people: states };
+      }
+
+      function crosswalkCentersPx(sceneState, sceneLeft) {
+        var centers = [];
+        for (var i = 0; i < sceneState.crosswalks.length; i++) {
+          var r = sceneState.crosswalks[i].getBoundingClientRect();
+          centers.push((r.left + r.right) / 2 - sceneLeft);
+        }
+        return centers;
+      }
+
+      function stepPedestrians(sceneState, dt, now) {
+        var sceneWidth = sceneState.scene.clientWidth || 300;
+        var sceneLeft = sceneState.scene.getBoundingClientRect().left;
+        var centers = sceneState.crosswalks.length ? crosswalkCentersPx(sceneState, sceneLeft) : [];
+
+        for (var i = 0; i < sceneState.people.length; i++) {
+          var s = sceneState.people[i];
+
+          if (s.mode === 'walk') {
+            var prevPx = s.leftPct / 100 * sceneWidth;
+            var nextPx = prevPx + s.dir * s.speedPxPerSec * dt;
+            var triggered = false;
+
+            if (centers.length && now > s.cooldownUntil) {
+              for (var ci = 0; ci < centers.length; ci++) {
+                var c = centers[ci];
+                var crossedFwd = s.dir > 0 && prevPx <= c && nextPx >= c;
+                var crossedBack = s.dir < 0 && prevPx >= c && nextPx <= c;
+                if ((crossedFwd || crossedBack) && Math.random() < CROSS_CHANCE) {
+                  var jittered = c + (Math.random() * JITTER_PX * 2 - JITTER_PX);
+                  s.mode = 'cross-out';
+                  s.crossT = 0;
+                  s.leftPct = jittered / sceneWidth * 100;
+                  s.el.classList.add('is-crossing');
+                  triggered = true;
+                  break;
+                }
+              }
+            }
+
+            if (!triggered) {
+              if (nextPx > sceneWidth + EDGE_MARGIN_PX) nextPx = -EDGE_MARGIN_PX;
+              else if (nextPx < -EDGE_MARGIN_PX) nextPx = sceneWidth + EDGE_MARGIN_PX;
+              s.leftPct = nextPx / sceneWidth * 100;
+            }
+          } else if (s.mode === 'cross-out') {
+            // Walking away from the viewer. Disappears for good at the
+            // bottom — it does not resume as a walker.
+            s.crossT += dt / s.crossDuration;
+            if (s.crossT >= 1) {
+              s.crossT = 1;
+              s.mode = 'waiting';
+              s.respawnAt = now + RESPAWN_DELAY_MIN_MS + Math.random() * (RESPAWN_DELAY_MAX_MS - RESPAWN_DELAY_MIN_MS);
+              s.el.classList.remove('is-crossing');
+              s.el.style.bottom = EXIT_BOTTOM + 'px';
+            } else {
+              s.el.style.bottom = lerp(sceneState.ground + ENTRY_BOTTOM_OFFSET, EXIT_BOTTOM, s.crossT) + 'px';
+            }
+          } else if (s.mode === 'waiting') {
+            // Off-stage (clipped by the scene's overflow:hidden) until
+            // it's time to re-enter as a fresh arrival.
+            if (now >= s.respawnAt) {
+              s.mode = 'cross-in';
+              s.crossT = 0;
+              s.leftPct = randomCrosswalkLeftPct(sceneState, sceneWidth);
+              s.dir = Math.random() < 0.5 ? -1 : 1;
+              s.el.style.setProperty('--person-facing', s.dir > 0 ? 1 : -1);
+              s.el.classList.add('is-crossing');
+            }
+          } else { // 'cross-in'
+            // Walking up out of the distance. Only on actually reaching
+            // the sidewalk does it become a normal walker.
+            s.crossT += dt / s.crossDuration;
+            if (s.crossT >= 1) {
+              s.crossT = 1;
+              s.mode = 'walk';
+              s.cooldownUntil = now + CROSS_COOLDOWN_MS;
+              s.el.classList.remove('is-crossing');
+              s.el.style.bottom = s.originalBottom;
+            } else {
+              s.el.style.bottom = lerp(EXIT_BOTTOM, sceneState.ground + ENTRY_BOTTOM_OFFSET, s.crossT) + 'px';
+            }
+          }
+
+          s.el.style.left = s.leftPct + '%';
+        }
+      }
+
+      var sceneStates = [];
+      var scenes = document.querySelectorAll('.scene');
+      for (var sc = 0; sc < scenes.length; sc++) {
+        if (scenes[sc].querySelector('.person')) sceneStates.push(makePedestrians(scenes[sc]));
+      }
+
+      var lastLeft = new WeakMap();
+      var lastDir = new WeakMap();
+
+      function yieldToCrossers(scene) {
+        var crossers = scene.querySelectorAll('.person.is-crossing');
+        var vehicles = scene.querySelectorAll('.car, .bus');
+        if (!vehicles.length) return;
+
+        var crosserRects = [];
+        for (var i = 0; i < crossers.length; i++) {
+          crosserRects.push(crossers[i].getBoundingClientRect());
+        }
+
+        for (var v = 0; v < vehicles.length; v++) {
+          var vehicle = vehicles[v];
+          var rect = vehicle.getBoundingClientRect();
+          var prev = lastLeft.get(vehicle);
+          lastLeft.set(vehicle, rect.left);
+
+          var dir = lastDir.get(vehicle) || 0;
+          if (prev !== undefined) {
+            var dx = rect.left - prev;
+            if (dx > 0.02) dir = 1;
+            else if (dx < -0.02) dir = -1;
+          }
+          lastDir.set(vehicle, dir);
+          if (!dir) continue;
+
+          var hazard = false;
+          for (var c = 0; c < crosserRects.length; c++) {
+            var p = crosserRects[c];
+            var gap = dir > 0 ? (p.left - rect.right) : (rect.left - p.right);
+            var overlap = gap < 0 && rect.right > p.left && p.right > rect.left;
+            if (overlap || (gap >= 0 && gap < STOP_GAP)) { hazard = true; break; }
+          }
+
+          if (hazard) {
+            vehicle.classList.add('is-stopped');
+          } else {
+            var stillClose = false;
+            for (var c2 = 0; c2 < crosserRects.length; c2++) {
+              var p2 = crosserRects[c2];
+              var gap2 = dir > 0 ? (p2.left - rect.right) : (rect.left - p2.right);
+              if (gap2 >= 0 && gap2 < RESUME_GAP) { stillClose = true; break; }
+            }
+            if (!stillClose) vehicle.classList.remove('is-stopped');
+          }
+        }
+      }
+
+      var lastNow = null;
+      function tick(now) {
+        var dt = lastNow == null ? 0 : Math.min((now - lastNow) / 1000, 0.05);
+        lastNow = now;
+
+        for (var i = 0; i < sceneStates.length; i++) {
+          stepPedestrians(sceneStates[i], dt, now);
+          yieldToCrossers(sceneStates[i].scene);
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    })();
+  </script>
 </body>
 
 </html>
