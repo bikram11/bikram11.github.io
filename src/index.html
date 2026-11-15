@@ -13,18 +13,8 @@
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="./style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
   <script>
-    function ShowAndHide(detailTitle) {
-      var x = document.getElementById(detailTitle + '_details');
-      if (x.style.display == 'none') {
-        x.style.display = 'block';
-      } else {
-        x.style.display = 'none';
-      }
-    }
-
     function myFunction() {
       var x = document.getElementById("myTopnav");
       if (x.className === "topnav") {
@@ -163,15 +153,11 @@
 
       <div class="inner">
       <div class="resume-sheet">
-        <div class="dataset-banner">
-          <h1>
-            <span class="me-flame"></span>
-            <a href="https://bikram11.github.io/Website_R2ND2/">Repeated Route Naturalistic Driving Dataset</a>
-          </h1>
-        </div>
+        <p class="dataset-note">Dataset: <a href="https://bikram11.github.io/Website_R2ND2/">Repeated Route
+            Naturalistic Driving Dataset</a></p>
 
         <section id="education">
-          <h1>🎓 Education</h1>
+          <h1>Education</h1>
           <h3>George Mason University <em style="font-size:0.8em">PhD in Computer Science | January 2021 -
               Present</em></h3>
           <p>Advisor: <b>Dr. Zoran Durić</b></p>
@@ -187,55 +173,28 @@
         </section>
 
         <section id="research">
-          <h1>🧭 Research Interests</h1>
-          <button type="submit" class="outline">Behavioral Analysis and Human Factor Research</button>
-          <button type="submit" class="outline">Computer Vision and Deep Learning</button>
-          <button type="submit" class="outline">Connected-vehicle, Vehicular sensors and V2V, V2X information
-            sharing</button>
-          <button type="submit" class="outline">Simulation and Modeling</button>
+          <h1>Research Interests</h1>
+          <ul class="plain-list">
+            <li>Behavioral analysis and human factor research</li>
+            <li>Computer vision and deep learning</li>
+            <li>Connected-vehicle, vehicular sensors, and V2V/V2X information sharing</li>
+            <li>Simulation and modeling</li>
+          </ul>
         </section>
 
         <section id="technical">
-          <h1>🛠️ Technical Expertise</h1>
-          <p>Click a category for detail</p>
-          <button type="submit" class="outline" onclick="ShowAndHide('Data_explore')">Data exploration and
-            Analysis</button>
-          <div id="Data_explore_details" style="display:none">
-            <button type="submit" class="outline purple-white">Python</button>
-            <button type="submit" class="outline purple-white">Tensorflow</button>
-            <button type="submit" class="outline purple-white">Matlab</button>
-          </div>
-          <button type="submit" class="outline" onclick="ShowAndHide('Web_develop')">Web Development</button>
-          <div id="Web_develop_details" style="display:none">
-            <button type="submit" class="outline purple-white">HTML5</button>
-            <button type="submit" class="outline purple-white">CSS</button>
-            <button type="submit" class="outline purple-white">jQuery</button>
-            <button type="submit" class="outline purple-white">JavaScript</button>
-            <button type="submit" class="outline purple-white">React</button>
-            <button type="submit" class="outline purple-white">Node.js</button>
-          </div>
-          <button type="submit" class="outline" onclick="ShowAndHide('Mobile_develop')">Mobile Application
-            Development</button>
-          <div id="Mobile_develop_details" style="display:none">
-            <button type="submit" class="outline purple-white">Flutter</button>
-            <button type="submit" class="outline purple-white">Xamarin</button>
-          </div>
-          <button type="submit" class="outline" onclick="ShowAndHide('Expert_program')">Expert Programming
-            Domain</button>
-          <div id="Expert_program_details" style="display:none">
-            <button type="submit" class="outline purple-white">Python3</button>
-            <button type="submit" class="outline purple-white">Java</button>
-          </div>
-          <button type="submit" class="outline" onclick="ShowAndHide('Simulation')">Simulation and Modeling</button>
-          <div id="Simulation_details" style="display:none">
-            <button type="submit" class="outline purple-white">Matlab</button>
-            <button type="submit" class="outline purple-white">Tensorflow</button>
-            <button type="submit" class="outline purple-white">CARLA (CARs Learning to Act)</button>
-          </div>
+          <h1>Technical Expertise</h1>
+          <ul class="plain-list">
+            <li><b>Data Exploration and Analysis:</b> Python, TensorFlow, MATLAB</li>
+            <li><b>Web Development:</b> HTML5, CSS, jQuery, JavaScript, React, Node.js</li>
+            <li><b>Mobile Application Development:</b> Flutter, Xamarin</li>
+            <li><b>Programming Languages:</b> Python3, Java</li>
+            <li><b>Simulation and Modeling:</b> MATLAB, TensorFlow, CARLA (CARs Learning to Act)</li>
+          </ul>
         </section>
 
         <section id="publications">
-          <h1>📜 Publications</h1>
+          <h1>Publications</h1>
           <h3>First Author</h3>
           <p>Adhikari, Bikram et al. "<b><a href="https://ieeexplore.ieee.org/document/8586823">EEG based
                 Directional Signal Classification using RNN Variants</a></b>." 2018 IEEE 3rd International
@@ -252,60 +211,25 @@
         </section>
 
         <section id="project">
-          <h1>🚦 Projects</h1>
-          <p>Click a project for detail</p>
-
-          <button class="outline" open-modal="openModal_0">Driver Gaze Mapping in real time</button>
-          <div id="openModal_0" class="modal">
-            <div class="modal-content">
-              <span class="close" close-modal>&times;</span>
-              <h2>Driver Gaze Mapping in real time</h2>
-              <iframe
-                src="https://docs.google.com/presentation/d/e/2PACX-1vRFwFIldJ0hoYKIye43QzR7di8LGFQbnf-2eIoJteos1xP4n5ft3ZrqUGhIIYPCiw/embed?start=false&loop=false&delayms=3000"
-                frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true"
-                webkitallowfullscreen="true"></iframe>
-            </div>
-          </div>
-
-          <button class="outline" open-modal="openModal_2">Guided pathways for individuals with mobility
-            impairments</button>
-          <div id="openModal_2" class="modal">
-            <div class="modal-content">
-              <span class="close" close-modal>&times;</span>
-              <h2>Guided pathways for individuals with mobility impairments</h2>
-              <iframe
-                src="https://docs.google.com/presentation/d/e/2PACX-1vQfE6jSHLCUkKj2OJbSBCpOB5GDvOZltd-ORlXTB8KNArrUaLDT2utFOBRStEZexg/embed?start=false&loop=false&delayms=3000"
-                frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true"
-                webkitallowfullscreen="true"></iframe>
-            </div>
-          </div>
-
-          <button class="outline" open-modal="openModal_3">Digital Storyboard for Guided pathways analysis</button>
-          <div id="openModal_3" class="modal">
-            <div class="modal-content">
-              <span class="close" close-modal>&times;</span>
-              <h2>Digital Storyboard for Guided pathways analysis</h2>
-              <iframe src="https://bikram11.github.io/PMS_Digital_Story/" frameborder="0" width="480" height="389"
-                allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-            </div>
-          </div>
-
-          <button class="outline" open-modal="openModal_4">EEG Based Directional Signal Classification using RRN
-            Variants</button>
-          <div id="openModal_4" class="modal">
-            <div class="modal-content">
-              <span class="close" close-modal>&times;</span>
-              <h2>EEG Based Directional Signal Classification using RRN Variants</h2>
-              <iframe
-                src="https://docs.google.com/presentation/d/e/2PACX-1vRHGI_6eHXnrbvsGFYLLinbxHv7reGv0GB49uymq_pNTM_ZwKjOBnl_A9ueMgEuGY4AIa3fiRiDkIr5/embed?start=false&loop=false&delayms=3000"
-                frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true"
-                webkitallowfullscreen="true"></iframe>
-            </div>
-          </div>
+          <h1>Projects</h1>
+          <ul class="plain-list">
+            <li><a
+                href="https://docs.google.com/presentation/d/e/2PACX-1vRFwFIldJ0hoYKIye43QzR7di8LGFQbnf-2eIoJteos1xP4n5ft3ZrqUGhIIYPCiw/embed?start=false&loop=false&delayms=3000"
+                target="_blank" rel="noopener">Driver Gaze Mapping in Real Time</a></li>
+            <li><a
+                href="https://docs.google.com/presentation/d/e/2PACX-1vQfE6jSHLCUkKj2OJbSBCpOB5GDvOZltd-ORlXTB8KNArrUaLDT2utFOBRStEZexg/embed?start=false&loop=false&delayms=3000"
+                target="_blank" rel="noopener">Guided Pathways for Individuals with Mobility Impairments</a></li>
+            <li><a href="https://bikram11.github.io/PMS_Digital_Story/" target="_blank" rel="noopener">Digital
+                Storyboard for Guided Pathways Analysis</a></li>
+            <li><a
+                href="https://docs.google.com/presentation/d/e/2PACX-1vRHGI_6eHXnrbvsGFYLLinbxHv7reGv0GB49uymq_pNTM_ZwKjOBnl_A9ueMgEuGY4AIa3fiRiDkIr5/embed?start=false&loop=false&delayms=3000"
+                target="_blank" rel="noopener">EEG Based Directional Signal Classification using RNN Variants</a>
+            </li>
+          </ul>
         </section>
 
         <section id="employment">
-          <h1>💼 Employment</h1>
+          <h1>Employment</h1>
           <h3>George Mason University <em style="font-size:0.8em">Graduate Research/Teaching Assistant | January
               2021 - Present</em></h3>
           <p>Working on <b>Driver Behavior Analysis and connected vehicles</b> under <b>Commonwealth Cyber
@@ -328,7 +252,7 @@
         </section>
 
         <section id="awards">
-          <h1>🏔️ Achievements and Awards</h1>
+          <h1>Achievements and Awards</h1>
           <p><span class="fa fa-star checked"></span> Won Second Prize in <b>Virginia Datathon</b> organized by
             Library of Virginia</p>
           <p><span class="fa fa-star checked"></span> Won First Prize in <b>Assistive Technologies Hackathon
@@ -344,7 +268,7 @@
         </section>
 
         <section>
-          <h1 id="references">📡 References</h1>
+          <h1 id="references">References</h1>
 
           <p>Dr. Zoran Duric | <em>George Mason University — Associate Professor (Primary Advisor)</em></p>
           <div class="social-buttons">
@@ -449,22 +373,6 @@
       </div>
     </div>
   </div>
-
-  <script>
-    $('[open-modal]').on('click', function () {
-      var id = $(this).attr('open-modal');
-      document.getElementById(id).style.display = "block";
-    });
-
-    $('[close-modal]').on('click', function () {
-      $(this).parents('.modal')[0].style.display = 'none';
-    });
-
-    $('.modal').on('click', function (e) {
-      if (e.target !== this) { return };
-      $(this)[0].style.display = 'none';
-    });
-  </script>
 </body>
 
 </html>
