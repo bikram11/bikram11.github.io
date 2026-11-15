@@ -24,6 +24,8 @@
   --flag-red: #c10516;
   --gold: #e3b45c;
   --white: #ffffff;
+  --st-ink: #241b14;
+  --st-white: #fffdf4;
 }
 
 * ,
@@ -333,6 +335,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 0.9px;
 }
 
 .stupa .pinnacle {
@@ -351,55 +354,133 @@ a {
 
 .stupa .harmika {
   position: relative;
-  width: 22px;
-  height: 17px;
-  background: var(--gold);
-  border-radius: 2px;
+  width: 24em;
+  height: 16em;
+  background: linear-gradient(90deg, #c79639, #efd27c 22%, #f4dc92 48%, #cba348 90%, #ab7b2b);
+  border-radius: .35em;
+  border-bottom: 1em solid #a67b34;
+  box-shadow: inset 0 1em 0 rgb(255 240 179 / 90%);
 }
 
+.stupa .harmika::before {
+  content: "";
+  position: absolute;
+  top: 2em;
+  left: 50%;
+  width: 1.35em;
+  height: 1.65em;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #8a3c2f;
+}
+
+.stupa .harmika::after {
+  content: "";
+  position: absolute;
+  top: -1.6em;
+  left: -1.5em;
+  width: 26em;
+  height: 2.2em;
+  border-radius: .4em;
+  background: linear-gradient(#f7de93 0 35%, #9e7330 40% 65%, #d5ac50 70%);
+}
+
+/* Almond-shaped eyes, dark irises and a separate painted brow. */
 .stupa .harmika .eye {
   position: absolute;
-  top: 5px;
-  width: 4px;
-  height: 4px;
-  background: var(--ink);
-  border-radius: 1px;
+  top: 5em;
+  width: 7.3em;
+  height: 3.6em;
+  border: .65em solid var(--st-ink);
+  border-radius: 75% 12% 75% 12%;
+  background:
+    radial-gradient(circle at 55% 48%, #151e29 0 .8em,
+      #486778 .85em 1.25em, transparent 1.3em),
+    #fffdf2;
+  transform: rotate(10deg);
 }
 
-.stupa .harmika .eye-l { left: 4px; }
-.stupa .harmika .eye-r { right: 4px; }
+.stupa .harmika .eye::before {
+  content: "";
+  position: absolute;
+  left: -.8em;
+  top: -2.2em;
+  width: 8em;
+  height: 3em;
+  border-top: .85em solid #294a64;
+  border-radius: 60% 45% 0 0;
+}
 
+.stupa .harmika .eye-l { left: 2em; }
+.stupa .harmika .eye-r { right: 2em; transform: scaleX(-1) rotate(10deg); }
+
+/* Curved central mark; an embedded path avoids font fallback changes. */
 .stupa .harmika .nose {
   position: absolute;
-  top: 10px;
+  top: 8.1em;
   left: 50%;
+  width: 4.2em;
+  height: 6.1em;
   transform: translateX(-50%);
-  width: 2px;
-  height: 4px;
-  background: var(--terracotta);
+  background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%206%209%22%3E%3Cpath%20d%3D%22M1.3%202.3C1.6.7%204.6.5%204.8%202.4c.2%201.6-2%202.2-3.3%201.3C.3%202.9.6%205%202%206.1L4.5%208%22%20fill%3D%22none%22%20stroke%3D%22%23994c32%22%20stroke-width%3D%22.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") center / 100% 100% no-repeat;
 }
 
+/* Broad whitewashed hemisphere, shaded with a gentle side falloff. */
 .stupa .dome {
-  width: 48px;
-  height: 24px;
-  background: var(--cream-light);
-  border-radius: 48px 48px 0 0;
+  position: relative;
+  width: 76em;
+  height: 36em;
+  border-radius: 50% 50% 3% 3% / 100% 100% 6% 6%;
+  background:
+    radial-gradient(ellipse at 35% 18%, rgb(255 255 255 / 94%), transparent 64%),
+    linear-gradient(105deg, #dfd9c6, var(--st-white) 34%, #f2eedf 67%, #c5c2af);
+  box-shadow: inset 0 -2em 0 rgb(167 152 121 / 22%);
+  overflow: hidden;
 }
 
+/* Subtle ochre wash following the curve of the dome. */
+.stupa .dome::before {
+  content: "";
+  position: absolute;
+  top: 6em;
+  left: 7em;
+  width: 62em;
+  height: 22em;
+  border: 1.5em solid rgb(194 148 45 / 42%);
+  border-top-color: transparent;
+  border-radius: 50%;
+  transform: rotate(-4deg);
+}
+
+.stupa .dome::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3em;
+  background: linear-gradient(180deg, rgb(255 254 248 / 75%), rgb(190 184 163 / 35%));
+}
+
+/* White terraced base; the two original spans are sufficient. */
 .stupa .base {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0;
 }
 
 .stupa .base span {
   display: block;
-  background: var(--tan);
-  height: 5px;
+  flex: 0 0 auto;
+  height: 5em;
+  border-radius: .8em;
+  background: linear-gradient(180deg, #fffdf4 0 1em, #e9e3d2 1em 3.5em, #c8bda2 4em 5em);
+  box-shadow: 0 .5em 0 rgb(130 114 88 / 22%);
 }
 
-.stupa .base span:nth-child(1) { width: 54px; border-radius: 2px; }
-.stupa .base span:nth-child(2) { width: 64px; border-radius: 2px; margin-top: 1px; }
+.stupa .base span:nth-child(1) { width: 84em; border-radius: .8em; }
+.stupa .base span:nth-child(2) { width: 96em; border-radius: .8em; margin-top: 1em; }
 
 /* ---- small car on the ground ---- */
 .scene .car {
@@ -582,7 +663,6 @@ a {
   border-radius: 10px;
   padding: 14px 16px;
   margin: 0 auto 16px;
-  max-width: 280px;
   text-align: left;
 }
 
