@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#334d65">
   <title>Bikram Adhikari — Driver Behavior Research</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,12 +41,23 @@
         return 'night';
       }
 
+      // Also drives the browser-chrome theme color (mobile address bar,
+      // etc.) from the same `--scene-sky` the header/sidebar already use,
+      // so it reads the computed value rather than duplicating the
+      // per-phase hex codes that live in the CSS.
+      function syncThemeColorMeta() {
+        var sky = getComputedStyle(document.documentElement).getPropertyValue('--scene-sky').trim();
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (sky && meta) meta.setAttribute('content', sky);
+      }
+
       function applyDaytimePhase() {
         try {
           document.documentElement.setAttribute('data-daytime', phaseFor(kathmanduDecimalHour()));
         } catch (e) {
           document.documentElement.setAttribute('data-daytime', 'day');
         }
+        syncThemeColorMeta();
       }
 
       applyDaytimePhase();
@@ -469,13 +481,14 @@
             </div>
             <div class="window-peek"><span class="opening"></span><span class="face kumari"></span><span class="face lakhe"></span></div>
           </div>
-          <div class="house" style="left:88%">
+          <div class="house main-newar" style="left:88%">
             <div class="roof"></div>
             <div class="wall">
               <span class="window w1"></span>
               <span class="window w2"></span>
               <span class="door"></span>
             </div>
+            <div class="window-peek"><span class="opening"></span><span class="face kumari"></span><span class="face lakhe"></span></div>
           </div>
 
           
@@ -747,6 +760,13 @@
                   var jittered = c + (Math.random() * JITTER_PX * 2 - JITTER_PX);
                   s.crosswalkIndex = ci;
                   s.leftPct = jittered / sceneWidth * 100;
+                  // Claim it immediately (sceneState.claimed was snapshotted
+                  // before this loop ran, so it doesn't know about this
+                  // pedestrian yet) so yieldAtCrosswalks brakes an
+                  // already-close vehicle starting this same frame, instead
+                  // of one frame late — which was enough for a close vehicle
+                  // to slip through the stop-line window unbraked.
+                  sceneState.claimed[ci] = true;
                   if (crosswalkOccupied(cwRects[ci], vehicles)) {
                     s.mode = 'waiting-to-cross';
                   } else {
@@ -794,6 +814,7 @@
             if (now >= s.respawnAt && centers.length) {
               var pick = Math.floor(Math.random() * centers.length);
               s.crosswalkIndex = pick;
+              sceneState.claimed[pick] = true;
               s.leftPct = (centers[pick] + (Math.random() * JITTER_PX * 2 - JITTER_PX)) / sceneWidth * 100;
               s.dir = Math.random() < 0.5 ? -1 : 1;
               s.el.style.setProperty('--person-facing', s.dir > 0 ? 1 : -1);
@@ -948,7 +969,7 @@
 
       var mq = window.matchMedia('(min-width: 48.0625em)');
       var GROUND_TILE = 64;
-      var HILL_TILE = 480;
+      var HILL_TILE = 960;
 
       function pair(selector) {
         var leftEl = leftScene.querySelector(selector);

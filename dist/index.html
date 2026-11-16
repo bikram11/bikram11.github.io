@@ -1,418 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Bikram Adhikari - Aspiring Doctoral Student</title>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="./style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-  <SCRIPT>
-    function ShowAndHide(detailTitle) {
-      var x = document.getElementById(detailTitle + '_details');
-      if (x.style.display == 'none') {
-        x.style.display = 'block';
-      } else {
-        x.style.display = 'none';
-      } 
-    }
-
-
-
-
-  </SCRIPT>
-  <script>
-    if(window.innerWidth>1396){
-      window.addEventListener("hashchange", function() { scrollBy(0, -50) });
-    }else{
-      window.addEventListener("hashchange", function() { scrollBy(0, -150) });
-    }
-   
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#334d65">
+<title>Bikram Adhikari — Driver Behavior Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="./nepal-8bit.css">
+<script>
+    (function () {
+      function kathmanduDecimalHour() {
+        var parts = new Intl.DateTimeFormat('en-GB', {
+          timeZone: 'Asia/Kathmandu',
+          hour: 'numeric',
+          minute: 'numeric',
+          hourCycle: 'h23'
+        }).formatToParts(new Date());
+        var h = 0, m = 0;
+        for (var i = 0; i < parts.length; i++) {
+          if (parts[i].type === 'hour') h = parseInt(parts[i].value, 10);
+          if (parts[i].type === 'minute') m = parseInt(parts[i].value, 10);
+        }
+        return h + m / 60;
+      }
+      function phaseFor(hour) {
+        if (hour >= 4 && hour < 5.5) return 'dawn';
+        if (hour >= 5.5 && hour < 7) return 'sunrise';
+        if (hour >= 7 && hour < 16.5) return 'day';
+        if (hour >= 16.5 && hour < 18) return 'sunset';
+        if (hour >= 18 && hour < 20) return 'dusk';
+        return 'night';
+      }
+      // Also drives the browser-chrome theme color (mobile address bar,
+      // etc.) from the same `--scene-sky` the header/sidebar already use,
+      // so it reads the computed value rather than duplicating the
+      // per-phase hex codes that live in the CSS.
+      function syncThemeColorMeta() {
+        var sky = getComputedStyle(document.documentElement).getPropertyValue('--scene-sky').trim();
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (sky && meta) meta.setAttribute('content', sky);
+      }
+      function applyDaytimePhase() {
+        try {
+          document.documentElement.setAttribute('data-daytime', phaseFor(kathmanduDecimalHour()));
+        } catch (e) {
+          document.documentElement.setAttribute('data-daytime', 'day');
+        }
+        syncThemeColorMeta();
+      }
+      applyDaytimePhase();
+      setInterval(applyDaytimePhase, 60000);
+    })();
   </script>
-  <script>
-    window.history.replaceState('', '', '/~badhika5');
-  </script>
-</head>
-
-<body>
-  <!-- partial:index.partial.html -->
-  <link
-    href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic|Open+Sans:300,400,500,700|Waiting+for+the+Sunrise|Shadows+Into+Light'
-    rel='stylesheet' type='text/css'>
-
-  <div class="wrapper clearfix">
-    <div class="left" style="text-align: center;">
-
-      <div class="name-hero" style="margin-top:10%;position:initial">
-
-        <div class="me-img">
-        </div>
-
-        <div class="name-text">
-
-          <h1>Bikram <em>Adhikari</em></h1>
-          <p>9618 Braddock Road, Fairfax, Virginia, 22032</p>
-          <p>badhika5@gmu.edu</p>
-          <p>(571) 340-7772</p>
-
-        </div>
-        <div class="name-text">
-          <br>
-          <br>
-          <!-- <h2>About Me:</h2> -->
-          <p><b>Greetings!!</b> I am a Ph.D. student in the Department of Computer Science at George Mason University. I work under Dr. Zoran Durić and Dr. Duminda Wijesekera at the <a href="https://www.gmu.edu/news/2019-12/mason-unveil-new-cyber-living-innovation-lab-part-cci">Cyber Living Innovation Lab.</a></p>
-          <br>
-          <p>
-            My research interest lies in algorithmic human behavioral analysis and computer vision. Currently, I'm working on <b>Driver behavioral analysis</b> in a simulated and real-world situation. Another ongoing research is <b>Connected perception</b> in signalized intersections using V2V and V2X sensor mapping.</p>
-        </div>
-        <br>
-        <div class="social-buttons">
-          <a href="mailto:badhika5@gmu.edu" class="social-buttons__button social-button social-button--mail"
-            aria-label="Email">
-            <i class="fa fa-envelope"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/bikram-adhikari/"
-            class="social-buttons__button social-button social-button--linkedin" aria-label="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <!-- <a href="#" class="social-buttons__button social-button social-button--snapchat" aria-label="HackerRank">
-            <i class="fab fa-hackerrank"></i>
-          </a> -->
-          <a href="https://github.com/bikram11" class="social-buttons__button social-button social-button--github"
-            aria-label="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://www.researchgate.net/profile/Bikram-Adhikari-7"
-            class="social-buttons__button social-button social-button--twitter" aria-label="ResearchGate">
-            <i class="fab fa-researchgate"></i>
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-    <div class="right">
-      <div class="topnav" id="myTopnav">
-        <a href="#education">Education</a>
-        <a href="#publications">Publications</a>
-        <a href="#project">Projects</a>
-        <a href="#awards">Awards</a>
-        <a href="#employment">Employment</a>
-        <a href="#references">References</a>
-        <button type="submit" class="outline"
-          style="color: rgb(255 255 255 / 75%);    border-color: rgb(255 255 255 / 75%);" onclick="window.location.href='https://gmuedu-my.sharepoint.com/:b:/r/personal/badhika5_gmu_edu/Documents/Bikram_Adhikari_Resume.pdf?csf=1&web=1&e=Ixurn6'">Download Resume</button>
-
-      </div>
-      <div class="inner">
-        <div style="text-align: center;">
-          <h1 style="display:inline-block; margin:2em 0 0 0">
-            <div class="me-flame">
-            </div>
-            <a href="https://bikram11.github.io/Website_R2ND2/"> Repeated Route Naturalistic Driving Dataset
-            </a>
-           
-          </h1>
-
-        </div>
-   
-        <section id="education">
-          <h1>Education</h1>
-          <h3>George Mason University <em style="color:rgba(0,0,0,.5); font-size:0.8em">PhD in Computer Science. |
-              January 2021 - Present</em></h3>
-          <p>Advisor : <b>Dr. Zoran Durić</b></p>
-          <p> <span class="fa fa-star checked"></span> Recipient of <b>Digital Innovation Summer Fellowship for Applied
-              Research</b>, Summer 2022.</p>
-          <p><span class="fa fa-star checked"></span> <b>NSF Research Traineeship (NRT)</b> Fellow 2021-22</p>
-          <p>School of Computing, Faifax, Virginia, 22032</p>
-          <h3>Institute of Engineering <em style="color:rgba(0,0,0,.5); font-size:0.8em">Bachelor in Computer
-              Engineering | September 2014 - August 2018</em></h3>
-          <p>Advisor : <b>Professor Dr. Arun Kumar Timalsina</b> </p>
-          <p>Worked on <b>Electroencephalogram(EEG) based home automation and directional classifiers</b></p>
-          <p>Department of Computer Science and Electronics, Central Campus, Pulchowk, Nepal, 44600</p>
-        </section>
-        <section id="research">
-          <h1>Research Interests</h1>
-          <button type="submit" class="outline">Behavioral Analysis and Human Factor Research</button>
-          <!-- <button type="submit" class="outline">Unsupervised and Reinforcement Learning</button> -->
-          <!-- <button type="submit" class="outline">Human Computer Interaction</button> -->
-          <button type="submit" class="outline">Computer Vision and Deep Learning</button>
-          <button type="submit" class="outline">Connected-vehicle, Vehicular sensors and V2V, V2X information sharing</button>
-          <button type="submit" class="outline">Simulation and Modeling</button>
-        </section>
-
-        <section id="technical">
-          <h1>Technical Expertise</h1>
-          <p>Click specific Expertise for detail</p>
-          <button type="submit" class="outline" onclick="ShowAndHide('Data_explore')">Data exploration and
-            Analysis</button>
-          <DIV ID="Data_explore_details" STYLE="display:none">
-            <button type="submit" class="outline purple-white">Python</button>
-            <button type="submit" class="outline purple-white">Tensorflow</button>
-            <button type="submit" class="outline purple-white">Matlab</button>
-          </DIV>
-          <button type="submit" class="outline" onclick="ShowAndHide('Web_develop')">Web Development</button>
-          <DIV ID="Web_develop_details" STYLE="display:none">
-            <button type="submit" class="outline purple-white">HTML:5</button>
-            <button type="submit" class="outline purple-white">CSS</button>
-            <button type="submit" class="outline purple-white">jquery</button>
-            <button type="submit" class="outline purple-white">javascript</button>
-            <button type="submit" class="outline purple-white">React</button>
-            <button type="submit" class="outline purple-white">nodeJs</button>
-          </DIV>
-          <button type="submit" class="outline" onclick="ShowAndHide('Mobile_develop')">Mobile Application
-            Development</button>
-          <DIV ID="Mobile_develop_details" STYLE="display:none">
-            <button type="submit" class="outline purple-white">Flutter</button>
-            <button type="submit" class="outline purple-white">Xamarin</button>
-          </DIV>
-          <button type="submit" class="outline" onclick="ShowAndHide('Expert_program')">Expert Programming
-            Domain</button>
-          <DIV ID="Expert_program_details" STYLE="display:none">
-            <button type="submit" class="outline purple-white">Python3</button>
-            <button type="submit" class="outline purple-white">Java</button>
-          </DIV>
-          <button type="submit" class="outline" onclick="ShowAndHide('Simulation')">Simulation and Modeling</button>
-          <DIV ID="Simulation_details" STYLE="display:none">
-            <button type="submit" class="outline purple-white">Matlab</button>
-            <button type="submit" class="outline purple-white">Tensorflow</button>
-            <button type="submit" class="outline purple-white">CARLA (CARs Learning to Act)</button>
-
-          </DIV>
-        </section>
-        <section id="publications">
-          <h1>Publications</h1>
-          <h3>First Author</h3>
-          <p>Adhikari, Bikram et al. “<b><a href="https://ieeexplore.ieee.org/document/8586823">EEG based Directional
-                Signal Classification using RNN Variants.</a></b>” 2018 IEEE
-            3rd International Conference on Computing, Communication and Security (ICCCS) (2018): 218-223.</p>
-            <p>Adhikari, Bikram et al. “<b><a href="https://bikram11.github.io/Website_R2ND2/">Repeated Route Naturalistic Driver Behavior Analysis using Motion and Gaze Measurements</a></b>” IEEE
-              Transactions on Intelligent Transportation Systems (2023, Under Review)</p>
-          
-          <h3>Open Review</h3>
-          <p>Adhikari, Bikram <b><a href="https://arxiv.org/abs/2308.13406">"Using Visual and Vehicular Sensors for Driver Behavior Analysis: A Survey"</a></b>.</p>
-          <p>Timalsina, Arun K. et al. <b><a href="https://arxiv.org/abs/2304.11068">"Color based classification of EEG Signals for people with severe locomotive
-            disorder"</a></b>.</p>
-        </section>
-        <section id="project">
-          <h1>Projects</h1>
-          <p>Click specific project for detail</p>
-
-          <button class="outline" open-modal="openModal_0">Driver Gaze Mapping in real time</button>
-
-          <!-- The Modal -->
-          <div id="openModal_0" class="modal">
-
-            <!-- Modal content -->
-            <div class="modal-content">
-              <span class="close" close-modal>&times;</span>
-              <h2>Driver Gaze Mapping in real time</h2>
-              <iframe
-                src="https://docs.google.com/presentation/d/e/2PACX-1vRFwFIldJ0hoYKIye43QzR7di8LGFQbnf-2eIoJteos1xP4n5ft3ZrqUGhIIYPCiw/embed?start=false&loop=false&delayms=3000"
-                frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true"
-                webkitallowfullscreen="true"></iframe>
-            </div>
-
-          </div>
-
-          <button class="outline" open-modal="openModal_2">Guided pathways for individuals with mobility
-            impairments</button>
-
-          <!-- The Modal -->
-          <div id="openModal_2" class="modal">
-
-            <!-- Modal content -->
-            <div class="modal-content">
-              <span class="close" close-modal>&times;</span>
-              <h2>Guided pathways for individuals with mobility impairments</h2>
-              <iframe
-                src="https://docs.google.com/presentation/d/e/2PACX-1vQfE6jSHLCUkKj2OJbSBCpOB5GDvOZltd-ORlXTB8KNArrUaLDT2utFOBRStEZexg/embed?start=false&loop=false&delayms=3000"
-                frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true"
-                webkitallowfullscreen="true"></iframe>
-            </div>
-          </div>
-
-          <button class="outline" open-modal="openModal_3">Digital Storyboard for Guided pathways analysis</button>
-
-          <!-- The Modal -->
-          <div id="openModal_3" class="modal">
-
-            <!-- Modal content -->
-            <div class="modal-content">
-              <span class="close" close-modal>&times;</span>
-              <h2>EEG Based Directional Signal Classification using RRN Variants</h2>
-              <iframe src="https://bikram11.github.io/PMS_Digital_Story/" frameborder="0" width="480" height="389"
-                allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-            </div>
-          </div>
-
-          <button class="outline" open-modal="openModal_4">EEG Based Directional Signal Classification using RRN
-            Variants</button>
-
-          <!-- The Modal -->
-          <div id="openModal_4" class="modal">
-
-            <!-- Modal content -->
-            <div class="modal-content">
-              <span class="close" close-modal>&times;</span>
-              <h2>EEG Based Directional Signal Classification using RRN Variants</h2>
-              <iframe
-                src="https://docs.google.com/presentation/d/e/2PACX-1vRHGI_6eHXnrbvsGFYLLinbxHv7reGv0GB49uymq_pNTM_ZwKjOBnl_A9ueMgEuGY4AIa3fiRiDkIr5/embed?start=false&loop=false&delayms=3000"
-                frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true"
-                webkitallowfullscreen="true"></iframe>
-            </div>
-          </div>
-
-
-
-        </section>
-        <section id="employment">
-          <h1>Employment</h1>
-          <h3>George Mason University | <em style="color:rgba(0,0,0,.5); font-size:0.8em"> Graduate Research/Teaching Assistant |
-              January 2021 - Present </em></h3>
-          <p>Working on <b>Driver Behavior Analysis and connected vehicles</b> under <b>Commonwealth Cyber Initiative
-                (CCI)</b> lab with Dr. Zoran Durić and Dr. Duminda Wijesekera</p>
-                <span class="fa fa-star checked"></span> <a href="https://gmuedu-my.sharepoint.com/:b:/g/personal/badhika5_gmu_edu/ETvR9zJukIhBhZO9WAih4ZYBl7DUlteSuEk5z3oqfvBoyg?e=eOpak8"><b>Estimation of Vehicular Velocity based on Non-Intrusive stereo camera: RMSE score lowered from baseline by 0.17</b></a>
-          <p>CS 211: <b>Object Oriented Programming</b> in Java for Spring 2021</p>
-          <p>CS 484/CS 584: <b>Data Mining</b> for Fall 2021, Spring 2022</p>
-          <h3>LIS Nepal Pvt. Ltd. | <em style="color:rgba(0,0,0,.5); font-size:0.8em">Software Engineer | September 2018
-              - December 2020 </em></h3>
-          <p>Java Developer involved in <b>POS retail system</b> implementation with involved with multiple clients.</p>
-          <p><span class="fa fa-star checked"></span> Awarded <b>Rising Star of the year 2019.</b></p>
-          <h3>Prixa Technologies Pvt. Ltd. |<em style="color:rgba(0,0,0,.5); font-size:0.8em">Intern/ Mid-Level
-              Developer | December 2016 - December 2018</em></h3>
-          <p>Worked on <b>django and Xamarin</b> based cross-platform android projects.</p>
-          <p>Shankhar Pokhrel: Android application established as the <b>first Provience(State)</b> support application
-            in Nepal</p>
-        </section>
-        <section id="awards">
-          <h1>Achievements and Awards</h1>
-
-          <p><span class="fa fa-star checked"></span> Won Second Prize in <b>Virginia Datathon</b> organized by Library
-            of Virginia</p>
-          <p><span class="fa fa-star checked"></span> Won First Prize in <b>Assistive Technologies Hackathon 2018</b>
-            organized by Maker Valley in collab-
-            oration with Thapathali Engineering Campus and Disaster Hack</p>
-          <p><span class="fa fa-star checked"></span> Second Runner up in <b>ICT and it's use for assistance for people
-              with locomotive disorder</b>
-            organized by Ford Foundation in collaboration with Lirneasia, ICT Nepal and Internet Society
-            Nepal</p>
-          <p><span class="fa fa-star checked"></span> Won Mentors' Choice Award in <b>Genese Codecamp</b> organized by
-            Institute of Engineering
-            Pashimanchal Campus in collaboration with Genese Infosys.</p>
-          <p><span class="fa fa-star checked"></span> <b>Hack a Week by Locus 2017</b> Category winner for Fun and
-            Entertainment with an android game “Let's count"</p>
-        </section>
-        <!-- <section>
-        <h1>Media Coverage</h1>
-        <object data="https://science.gmu.edu/news/mason-team-wins-prize-virtual-virginia-datathon" width="50%" height="300">
-          <embed src="https://science.gmu.edu/news/mason-team-wins-prize-virtual-virginia-datathon" width="50%" height="300"> </embed>
-          Error: Embedded data could not be displayed.
-      </object>
-          <p>Mason Team Wins Prize in Virtual Virginia Datathon</p>
-    
-      </section> -->
-        <section>
-          <h1 id="references">References</h1>
-
-          <p>Dr. Zoran Duric | <em>George Mason University. | Associate Professor (Primary Advisor)</em></p>
-          <div class="social-buttons">
-            <a href="mailto:zduric@gmu.edu" style="background:rgb(238 238 238); width: 40px; height: 40px;"
-              class="social-buttons__button social-button social-button--mail" aria-label="Email">
-              <i style="font-size: 18px;" class="fa fa-envelope"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/zoran-duric-2988851"
-              style="background:rgb(238 238 238); width: 40px; height: 40px;"
-              class="social-buttons__button social-button social-button--linkedin" aria-label="LinkedIn">
-              <i style="font-size: 18px;" class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://www.researchgate.net/profile/Zoran-Duric"
-              style="background:rgb(238 238 238); width: 40px; height: 40px;"
-              class="social-buttons__button social-button social-button--twitter" aria-label="ResearchGate">
-              <i style="font-size: 25px;" class="fab fa-researchgate"></i>
-            </a>
-
-          </div>
-
-          <br>
-          <p>Dr. Arun Kumar Timalsina | <em>Tribhuvan University | Professor (Undergraduate Advisor)</em></p>
-
-          <div class="social-buttons">
-
-            <a href="mailto:t.arun@ioe.edu.np" style="background:rgb(238 238 238); width: 40px; height: 40px;"
-              class="social-buttons__button social-button social-button--mail" aria-label="Email">
-              <i style="font-size: 18px;" class="fa fa-envelope"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/arun-timalsina-84aa4b9"
-              style="background:rgb(238 238 238); width: 40px; height: 40px;"
-              class="social-buttons__button social-button social-button--linkedin" aria-label="LinkedIn">
-              <i style="font-size: 18px;" class="fab fa-linkedin-in"></i>
-            </a>
-            <!-- <a href="https://www.researchgate.net/profile/Zoran-Duric" style="background:rgb(238 238 238); width: 40px; height: 40px;" class="social-buttons__button social-button social-button--snapchat" aria-label="ResearchGate">
-            <i class="fab fa-researchgate"></i>
-          </a> -->
-
-          </div>
-          <br>
-          <p>Binamra Kandel | <em>Logic Infromation Systems | Senior Software Engineer</em></p>
-          <div class="social-buttons">
-            <a href="mailto:bkandel@logicinfo.com" style="background:rgb(238 238 238); width: 40px; height: 40px;"
-              class="social-buttons__button social-button social-button--mail" aria-label="Email">
-              <i style="font-size: 18px;" class="fa fa-envelope"></i>
-            </a>
-            <a href="https://ca.linkedin.com/in/binamrakandel"
-              style="background:rgb(238 238 238); width: 40px; height: 40px;"
-              class="social-buttons__button social-button social-button--linkedin" aria-label="LinkedIn">
-              <i style="font-size: 18px;" class="fab fa-linkedin-in"></i>
-            </a>
-
-
-          </div>
-        </section>
-
-        <section style="text-align: right;">
-
-          <p style="font-size: 14px;
-         font-family: serif; color:black"> Hi Visitor Number <img
-              src="https://hitwebcounter.com/counter/counter.php?page=8002682&style=0007&nbdigits=5&type=ip&initCount=0"
-              title="Free Counter" Alt="web counter" border="0" />. Welcome to my website</p>
-          <a style="font-size: 10px;" href="https://www.hitwebcounter.com" target="_blank">Counter Courtesy
-            hitwebcounter</a>
-
-        </section>
-      </div>
-
-    </div>
-
-
-
-  </div>
-  <!-- partial -->
-  <script>
-
-    $('[open-modal]').on('click', function () {
-      var id = $(this).attr('open-modal');
-      document.getElementById(id).style.display = "block";
-
-    });
-
-    $('[close-modal]').on('click', function () {
-      $(this).parents('.modal')[0].style.display = 'none';
-    });
-
-    $('.modal').on('click', function (e) {
-      if (e.target !== this) { return };
-      $(this)[0].style.display = 'none';
-    });
-  </script>
-  <script>
+<script>
     function myFunction() {
       var x = document.getElementById("myTopnav");
       if (x.className === "topnav") {
@@ -421,8 +66,946 @@
         x.className = "topnav";
       }
     }
+    if (window.innerWidth > 1396) {
+      window.addEventListener("hashchange", function () { scrollBy(0, -50) });
+    } else {
+      window.addEventListener("hashchange", function () { scrollBy(0, -150) });
+    }
   </script>
-  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+</head>
+<body>
+<div class="wrapper clearfix">
+<div class="left">
+<div class="scene" aria-hidden="true">
+<div class="cloud c1"></div>
+<div class="cloud c2"></div>
+<div class="bird b1"></div>
+<div class="bird b2"></div>
+<div class="hills far">
+<svg viewBox="0 0 400 100" preserveAspectRatio="none">
+<path d="M0,55 C60,20 140,70 200,35 C260,5 340,60 400,30 L400,100 L0,100 Z" />
+</svg>
+</div>
+<div class="hills mid">
+<svg viewBox="0 0 400 100" preserveAspectRatio="none">
+<path d="M0,75 C70,40 150,90 220,55 C290,25 350,80 400,50 L400,100 L0,100 Z" />
+</svg>
+</div>
+<div class="hills near">
+<svg viewBox="0 0 400 100" preserveAspectRatio="none">
+<path d="M0,90 C80,55 160,95 230,65 C300,40 360,85 400,60 L400,100 L0,100 Z" />
+</svg>
+</div>
+<div class="skyline">
+<div class="pagoda">
+<div class="finial"></div>
+<div class="tier t1"><div class="roof"></div><div class="body"></div></div>
+<div class="tier t2"><div class="roof"></div><div class="body"></div></div>
+<div class="tier t3"><div class="roof"></div><div class="body"></div></div>
+</div>
+<div class="stupa">
+<div class="pinnacle"></div>
+<div class="spire"></div>
+<div class="harmika">
+<span class="eye eye-l"></span>
+<span class="eye eye-r"></span>
+<span class="nose"></span>
+</div>
+<div class="dome"></div>
+<div class="base"><span></span><span></span></div>
+<div class="flag-tail left"></div>
+<div class="flag-tail right"></div>
+</div>
+</div>
+<div class="house main-newar" style="left:6%">
+<div class="roof"></div>
+<div class="wall">
+<span class="window w1"></span>
+<span class="window w2"></span>
+<span class="door"></span>
+</div>
+<div class="window-peek"><span class="opening"></span><span class="face kumari"></span><span class="face lakhe"></span></div>
+</div>
+<div class="crosswalk" style="left:55%"></div>
+<div class="person walk shirt-gold">
+<span class="head"></span><span class="torso"></span>
+<span class="leg l"></span><span class="leg r"></span>
+</div>
+<div class="person walk shirt-sage">
+<span class="head"></span><span class="torso"></span>
+<span class="leg l"></span><span class="leg r"></span>
+</div>
+<div class="person walk sari-maroon">
+<span class="head"></span><span class="torso"></span>
+<span class="leg l"></span><span class="leg r"></span>
+</div>
+<div class="person cross shirt-teal facing-left" style="left:60%;">
+<span class="head"></span><span class="torso"></span>
+<span class="leg l"></span><span class="leg r"></span>
+</div>
+<div class="person cross sari-teal facing-left" style="left:30%;">
+<span class="head"></span><span class="torso"></span>
+<span class="leg l"></span><span class="leg r"></span>
+</div>
+<div class="car">
+<span class="body"></span>
+<span class="cab"></span>
+<span class="wheel w1"></span>
+<span class="wheel w2"></span>
+</div>
+<div class="car c2">
+<span class="body"></span>
+<span class="cab"></span>
+<span class="wheel w1"></span>
+<span class="wheel w2"></span>
+</div>
+<div class="car c3">
+<span class="body"></span>
+<span class="cab"></span>
+<span class="wheel w1"></span>
+<span class="wheel w2"></span>
+</div>
+<div class="bus">
+<span class="roofline"></span>
+<span class="body"></span>
+<span class="stripe"></span>
+<span class="windshield"></span>
+<span class="windows"></span>
+<span class="mirror"></span>
+<span class="light"></span>
+<span class="wheel w1"></span>
+<span class="wheel w2"></span>
+</div>
+<div class="bus b2">
+<span class="roofline"></span>
+<span class="body"></span>
+<span class="stripe"></span>
+<span class="windshield"></span>
+<span class="windows"></span>
+<span class="mirror"></span>
+<span class="light"></span>
+<span class="wheel w1"></span>
+<span class="wheel w2"></span>
+</div>
+<div class="ground"></div>
+</div>
+<div class="flag-mark">
+<svg class="np-flag-svg" viewBox="30 0 340 390" xmlns="http://www.w3.org/2000/svg" aria-label="Flag of Nepal">
+<path id="outer-line" d="M 50 373 l 0 -352 296 174 -178 0 178 178 z" />
+<path id="inner-line" d="M 65 358 l 244 0 -174 -178 157 0 -227 -133 z" />
+<path id="moon"
+d="M103.8,146.6l1.7-3.5l-10.4-4.5l11.1-2.6l-7.5-8.2l11.2,2l-3.4-10.5l9.3,6.3l1.3-11l5.8,9.4l5.8-9.4l1.3,11 	l9.3-6.3l-3.4,10.5l11.2-2l-7.5,8.2l11.1,2.6l-10.4,4.5l1.7,3.5c11.2-5.3,19.9-15.1,23.7-27c0.1,1.3,0.2,2.6,0.2,3.9 	c0,23.8-19.3,43-43,43c-23.8,0-43-19.3-43-43c0-1.3,0.1-2.5,0.2-3.7C84,131.6,92.7,141.3,103.8,146.6z" />
+<polygon id="sun"
+points="123,317.5 130.4,300.7 145.5,311.4 143.8,293.3 161.9,295 151.3,280 168,272.5 151.3,265 161.9,250 	143.8,251.7 145.5,233.6 130.4,244.3 123,227.5 115.6,244.3 100.5,233.6 102.2,251.7 84.1,250 94.7,265 78,272.5 94.7,280 84.1,295 	102.2,293.3 100.5,311.4 115.6,300.7" />
+</svg>
+</div>
+<div class="name-hero">
+<div class="me-img"></div>
+<div class="name-text">
+<h1>Bikram <em>Adhikari</em></h1>
+<div class="bio-box">
+<p><b>Greetings and Namaste!!</b><br>A Research Scientist by profession and a problem solver at heart.<br>
+I work as a Research/Data Scientist at <a href="https://driverresearchinstitute.com">Driver Research Institute</a> where I am
+trying to go beyond the crash and understand the science behind driver behavior.</p>
+</div>
+<div class="social-buttons">
+<a href="mailto:badhika5@gmu.edu" class="social-buttons__button social-button social-button--mail"
+aria-label="Email">
+<i class="fa fa-envelope"></i>
+</a>
+<a href="https://www.linkedin.com/in/bikram-adhikari/"
+class="social-buttons__button social-button social-button--linkedin" aria-label="LinkedIn">
+<i class="fab fa-linkedin-in"></i>
+</a>
+<a href="https://github.com/bikram11" class="social-buttons__button social-button social-button--github"
+aria-label="GitHub">
+<i class="fab fa-github"></i>
+</a>
+<a href="https://www.researchgate.net/profile/Bikram-Adhikari-7"
+class="social-buttons__button social-button social-button--twitter" aria-label="ResearchGate">
+<i class="fab fa-researchgate"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="right">
+<div class="topnav" id="myTopnav">
+<a href="#News">Updates</a>
+<a href="#education">Education</a>
+<a href="#publications">Publications</a>
+<a href="#project">Projects</a>
+<a href="#awards">Awards</a>
+<a href="#employment">Employment</a>
+</div>
+<div class="inner">
+<div class="resume-sheet">
+<p class="dataset-note">Analysis Tool:<a href="https://apps.apple.com/us/app/rapid-response-by-dri/id6772282708">Rapid Response.</a> A crash investigator's toolkit</p>
+<p class="dataset-note">Dataset: <a href="https://bikram11.github.io/Website_R2ND2/">Repeated Route
+Naturalistic Driving Dataset</a></p>
+<section id="education">
+<h1>Education</h1>
+<h3>George Mason University <em style="font-size:0.8em">PhD in Computer Science | 2021 -
+2026</em></h3>
+<p>Advisor: <b>Dr. Zoran Durić</b></p>
+<p><span class="fa fa-star checked"></span> Recipient of <b>Digital Innovation Summer Fellowship for
+Applied Research</b>, Summer 2022.</p>
+<p><span class="fa fa-star checked"></span> <b>NSF Research Traineeship (NRT)</b> Fellow 2021-22</p>
+<p>School of Computing, Fairfax, Virginia, 22032</p>
+<h3>Institute of Engineering <em style="font-size:0.8em">Bachelor in Computer Engineering | September
+2014 - August 2018</em></h3>
+<p>Advisor: <b>Professor Dr. Arun Kumar Timalsina</b></p>
+<p>Worked on <b>Electroencephalogram (EEG) based home automation and directional classifiers</b></p>
+<p>Department of Computer Science and Electronics, Central Campus, Pulchowk, Nepal, 44600</p>
+</section>
+<section id="research">
+<h1>Research Interests</h1>
+<ul class="plain-list">
+<li>Behavioral analysis and human factor research</li>
+<li>Computer vision and deep learning</li>
+<li>Connected-vehicle, vehicular sensors, and V2V/V2X information sharing</li>
+<li>Simulation and modeling</li>
+</ul>
+</section>
+<section id="technical">
+<h1>Technical Expertise</h1>
+<ul class="plain-list">
+<li><b>Data Exploration and Analysis:</b> Python, TensorFlow, MATLAB</li>
+<li><b>Web Development:</b> HTML5, CSS, jQuery, JavaScript, React, Node.js</li>
+<li><b>Mobile Application Development:</b> Flutter, Xamarin</li>
+<li><b>Programming Languages:</b> Python3, Java</li>
+<li><b>Simulation and Modeling:</b> MATLAB, TensorFlow, CARLA (CARs Learning to Act)</li>
+</ul>
+</section>
+<section id="publications">
+<h1>Publications</h1>
+<h3>First Author</h3>
+<p>Adhikari, Bikram et al. "<b><a href="https://ieeexplore.ieee.org/document/8586823">EEG based
+Directional Signal Classification using RNN Variants</a></b>." 2018 IEEE 3rd International
+Conference on Computing, Communication and Security (ICCCS) (2018): 218-223.</p>
+<p>Adhikari, Bikram et al. "<b><a href="https://bikram11.github.io/Website_R2ND2/">Repeated Route
+Naturalistic Driver Behavior Analysis using Motion and Gaze Measurements</a></b>." IEEE
+Transactions on Intelligent Transportation Systems (2023, Under Review)</p>
+<h3>Open Review</h3>
+<p>Adhikari, Bikram. <b><a href="https://arxiv.org/abs/2308.13406">"Using Visual and Vehicular Sensors
+for Driver Behavior Analysis: A Survey"</a></b>.</p>
+<p>Timalsina, Arun K. et al. <b><a href="https://arxiv.org/abs/2304.11068">"Color based classification of
+EEG Signals for people with severe locomotive disorder"</a></b>.</p>
+</section>
+<section id="project">
+<h1>Projects</h1>
+<ul class="plain-list">
+<li><a
+href="https://docs.google.com/presentation/d/e/2PACX-1vRFwFIldJ0hoYKIye43QzR7di8LGFQbnf-2eIoJteos1xP4n5ft3ZrqUGhIIYPCiw/embed?start=false&loop=false&delayms=3000"
+target="_blank" rel="noopener">Driver Gaze Mapping in Real Time</a></li>
+<li><a
+href="https://docs.google.com/presentation/d/e/2PACX-1vQfE6jSHLCUkKj2OJbSBCpOB5GDvOZltd-ORlXTB8KNArrUaLDT2utFOBRStEZexg/embed?start=false&loop=false&delayms=3000"
+target="_blank" rel="noopener">Guided Pathways for Individuals with Mobility Impairments</a></li>
+<li><a href="https://bikram11.github.io/PMS_Digital_Story/" target="_blank" rel="noopener">Digital
+Storyboard for Guided Pathways Analysis</a></li>
+<li><a
+href="https://docs.google.com/presentation/d/e/2PACX-1vRHGI_6eHXnrbvsGFYLLinbxHv7reGv0GB49uymq_pNTM_ZwKjOBnl_A9ueMgEuGY4AIa3fiRiDkIr5/embed?start=false&loop=false&delayms=3000"
+target="_blank" rel="noopener">EEG Based Directional Signal Classification using RNN Variants</a>
+</li>
+</ul>
+</section>
+<section id="employment">
+<h1>Employment</h1>
+<h3>George Mason University <em style="font-size:0.8em">Graduate Research/Teaching Assistant | January
+2021 - Present</em></h3>
+<p>Working on <b>Driver Behavior Analysis and connected vehicles</b> under <b>Commonwealth Cyber
+Initiative (CCI)</b> lab with Dr. Zoran Durić and Dr. Duminda Wijesekera</p>
+<p><span class="fa fa-star checked"></span> <a
+href="https://gmuedu-my.sharepoint.com/:b:/g/personal/badhika5_gmu_edu/ETvR9zJukIhBhZO9WAih4ZYBl7DUlteSuEk5z3oqfvBoyg?e=eOpak8"><b>Estimation
+of Vehicular Velocity based on Non-Intrusive stereo camera: RMSE score lowered from baseline by
+0.17</b></a></p>
+<p>CS 211: <b>Object Oriented Programming</b> in Java for Spring 2021</p>
+<p>CS 484/CS 584: <b>Data Mining</b> for Fall 2021, Spring 2022</p>
+<h3>LIS Nepal Pvt. Ltd. <em style="font-size:0.8em">Software Engineer | September 2018 - December
+2020</em></h3>
+<p>Java Developer involved in <b>POS retail system</b> implementation with multiple clients.</p>
+<p><span class="fa fa-star checked"></span> Awarded <b>Rising Star of the Year 2019</b>.</p>
+<h3>Prixa Technologies Pvt. Ltd. <em style="font-size:0.8em">Intern / Mid-Level Developer | December
+2016 - December 2018</em></h3>
+<p>Worked on <b>Django and Xamarin</b> based cross-platform Android projects.</p>
+<p>Shankhar Pokhrel: Android application established as the <b>first Province (State)</b> support
+application in Nepal.</p>
+</section>
+<section id="awards">
+<h1>Achievements and Awards</h1>
+<p><span class="fa fa-star checked"></span> Won Second Prize in <b>Virginia Datathon</b> organized by
+Library of Virginia</p>
+<p><span class="fa fa-star checked"></span> Won First Prize in <b>Assistive Technologies Hackathon
+2018</b> organized by Maker Valley in collaboration with Thapathali Engineering Campus and Disaster
+Hack</p>
+<p><span class="fa fa-star checked"></span> Second Runner up in <b>ICT and its use for assistance for
+people with locomotive disorder</b> organized by Ford Foundation in collaboration with Lirneasia,
+ICT Nepal and Internet Society Nepal</p>
+<p><span class="fa fa-star checked"></span> Won Mentors' Choice Award in <b>Genese Codecamp</b> organized
+by Institute of Engineering Pashimanchal Campus in collaboration with Genese Infosys</p>
+<p><span class="fa fa-star checked"></span> <b>Hack a Week by Locus 2017</b> Category winner for Fun and
+Entertainment with an Android game "Let's count"</p>
+</section>
+<section>
+<h1 id="references">References</h1>
+<p>Dr. Zoran Duric | <em>George Mason University — Associate Professor (Primary Advisor)</em></p>
+<div class="social-buttons">
+<a href="mailto:zduric@gmu.edu" class="social-buttons__button social-button social-button--mail"
+aria-label="Email">
+<i class="fa fa-envelope"></i>
+</a>
+<a href="https://www.linkedin.com/in/zoran-duric-2988851"
+class="social-buttons__button social-button social-button--linkedin" aria-label="LinkedIn">
+<i class="fab fa-linkedin-in"></i>
+</a>
+<a href="https://www.researchgate.net/profile/Zoran-Duric"
+class="social-buttons__button social-button social-button--twitter" aria-label="ResearchGate">
+<i class="fab fa-researchgate"></i>
+</a>
+</div>
+<p>Dr. Arun Kumar Timalsina | <em>Tribhuvan University — Professor (Undergraduate Advisor)</em></p>
+<div class="social-buttons">
+<a href="mailto:t.arun@ioe.edu.np" class="social-buttons__button social-button social-button--mail"
+aria-label="Email">
+<i class="fa fa-envelope"></i>
+</a>
+<a href="https://www.linkedin.com/in/arun-timalsina-84aa4b9"
+class="social-buttons__button social-button social-button--linkedin" aria-label="LinkedIn">
+<i class="fab fa-linkedin-in"></i>
+</a>
+</div>
+<p>Binamra Kandel | <em>Logic Information Systems — Senior Software Engineer</em></p>
+<div class="social-buttons">
+<a href="mailto:bkandel@logicinfo.com" class="social-buttons__button social-button social-button--mail"
+aria-label="Email">
+<i class="fa fa-envelope"></i>
+</a>
+<a href="https://ca.linkedin.com/in/binamrakandel"
+class="social-buttons__button social-button social-button--linkedin" aria-label="LinkedIn">
+<i class="fab fa-linkedin-in"></i>
+</a>
+</div>
+</section>
+</div>
+</div>
+<div class="scene scene--footer" aria-hidden="true">
+<div class="cloud c1"></div>
+<div class="cloud c2"></div>
+<div class="bird b1"></div>
+<div class="bird b2"></div>
+<div class="hills far">
+<svg viewBox="0 0 400 100" preserveAspectRatio="none">
+<path d="M0,55 C60,20 140,70 200,35 C260,5 340,60 400,30 L400,100 L0,100 Z" />
+</svg>
+</div>
+<div class="hills mid">
+<svg viewBox="0 0 400 100" preserveAspectRatio="none">
+<path d="M0,75 C70,40 150,90 220,55 C290,25 350,80 400,50 L400,100 L0,100 Z" />
+</svg>
+</div>
+<div class="hills near">
+<svg viewBox="0 0 400 100" preserveAspectRatio="none">
+<path d="M0,90 C80,55 160,95 230,65 C300,40 360,85 400,60 L400,100 L0,100 Z" />
+</svg>
+</div>
+<div class="skyline">
+<div class="pagoda">
+<div class="finial"></div>
+<div class="tier t1"><div class="roof"></div><div class="body"></div></div>
+<div class="tier t2"><div class="roof"></div><div class="body"></div></div>
+<div class="tier t3"><div class="roof"></div><div class="body"></div></div>
+</div>
+<div class="stupa">
+<div class="pinnacle"></div>
+<div class="spire"></div>
+<div class="harmika">
+<span class="eye eye-l"></span>
+<span class="eye eye-r"></span>
+<span class="nose"></span>
+</div>
+<div class="dome"></div>
+<div class="base"><span></span><span></span></div>
+<div class="flag-tail left"></div>
+<div class="flag-tail right"></div>
+</div>
+</div>
+<div class="house main-newar" style="left:4%">
+<div class="roof"></div>
+<div class="wall">
+<span class="window w1"></span>
+<span class="window w2"></span>
+<span class="door"></span>
+</div>
+<div class="window-peek"><span class="opening"></span><span class="face kumari"></span><span class="face lakhe"></span></div>
+</div>
+<div class="house main-newar" style="left:88%">
+<div class="roof"></div>
+<div class="wall">
+<span class="window w1"></span>
+<span class="window w2"></span>
+<span class="door"></span>
+</div>
+<div class="window-peek"><span class="opening"></span><span class="face kumari"></span><span class="face lakhe"></span></div>
+</div>
+<div class="stall" style="left:15%">
+<div class="awning"></div>
+<div class="post post-l"></div>
+<div class="post post-r"></div>
+<div class="counter">
+<span class="goods g1"></span><span class="goods g2"></span><span class="goods g3"></span>
+</div>
+</div>
+<div class="stall" style="left:79%">
+<div class="awning"></div>
+<div class="post post-l"></div>
+<div class="post post-r"></div>
+<div class="counter">
+<span class="goods g1"></span><span class="goods g2"></span><span class="goods g3"></span>
+</div>
+</div>
+<div class="crosswalk" style="left:68%"></div>
+<div class="person walk shirt-gold">
+<span class="head"></span><span class="torso"></span>
+<span class="leg l"></span><span class="leg r"></span>
+</div>
+<div class="person walk shirt-teal" style="bottom:calc(var(--scene-ground-height) + 4px);">
+<span class="head"></span><span class="torso"></span>
+<span class="leg l"></span><span class="leg r"></span>
+</div>
+<div class="person walk shirt-sage">
+<span class="head"></span><span class="torso"></span>
+<span class="leg l"></span><span class="leg r"></span>
+</div>
+<div class="person walk shirt-gold">
+<span class="head"></span><span class="torso"></span>
+<span class="leg l"></span><span class="leg r"></span>
+</div>
+<div class="person walk sari-maroon">
+<span class="head"></span><span class="torso"></span>
+<span class="leg l"></span><span class="leg r"></span>
+</div>
+<div class="person walk sari-teal" style="bottom:calc(var(--scene-ground-height) + 4px);">
+<span class="head"></span><span class="torso"></span>
+<span class="leg l"></span><span class="leg r"></span>
+</div>
+<div class="person cross" style="left:70%;">
+<span class="head"></span><span class="torso"></span>
+<span class="leg l"></span><span class="leg r"></span>
+</div>
+<div class="person cross shirt-sage facing-left" style="left:74%;">
+<span class="head"></span><span class="torso"></span>
+<span class="leg l"></span><span class="leg r"></span>
+</div>
+<div class="person cross sari-maroon facing-left" style="left:78%;">
+<span class="head"></span><span class="torso"></span>
+<span class="leg l"></span><span class="leg r"></span>
+</div>
+<div class="car">
+<span class="body"></span>
+<span class="cab"></span>
+<span class="wheel w1"></span>
+<span class="wheel w2"></span>
+</div>
+<div class="car c2">
+<span class="body"></span>
+<span class="cab"></span>
+<span class="wheel w1"></span>
+<span class="wheel w2"></span>
+</div>
+<div class="car c3">
+<span class="body"></span>
+<span class="cab"></span>
+<span class="wheel w1"></span>
+<span class="wheel w2"></span>
+</div>
+<div class="bus">
+<span class="roofline"></span>
+<span class="body"></span>
+<span class="stripe"></span>
+<span class="windshield"></span>
+<span class="windows"></span>
+<span class="mirror"></span>
+<span class="light"></span>
+<span class="wheel w1"></span>
+<span class="wheel w2"></span>
+</div>
+<div class="bus b2">
+<span class="roofline"></span>
+<span class="body"></span>
+<span class="stripe"></span>
+<span class="windshield"></span>
+<span class="windows"></span>
+<span class="mirror"></span>
+<span class="light"></span>
+<span class="wheel w1"></span>
+<span class="wheel w2"></span>
+</div>
+<div class="ground"></div>
+</div>
+<div class="site-footer">
+<p style="font-size: 14px;">Hi Visitor Number <img
+src="https://hitwebcounter.com/counter/counter.php?page=8002682&style=0007&nbdigits=5&type=ip&initCount=0"
+title="Free Counter" alt="web counter" border="0" />. Welcome to my website.</p>
+<a style="font-size: 10px;" href="https://www.hitwebcounter.com" target="_blank" rel="noopener">Counter
+Courtesy hitwebcounter</a>
+</div>
+</div>
+</div>
+</div>
+<script>
+    // Pedestrian life + traffic-yield, driven as one JS simulation.
+    //
+    // Every `.person` is fundamentally a sidewalk walker (`left` drifts
+    // at a steady pace, wrapping at the scene edges like the cars do).
+    // Each time it passes a `.crosswalk`'s centerline it rolls the dice;
+    // on a hit it locks `left` to that centerline and crosses the
+    // road's depth (`bottom`) instead — but the two crossing directions
+    // mean different things and are NOT symmetric:
+    //
+    //   - top -> bottom ("cross-out"): walking off the sidewalk, away
+    //     from the viewer, into the distance. It disappears at the far
+    //     (bottom) end and does not come back as that same walk — it's
+    //     gone. (Internally it waits off-stage, invisible past the
+    //     scene's clipped edge, then later re-enters as a fresh
+    //     cross-in elsewhere, so the DOM node is recycled rather than
+    //     the population slowly draining to zero.)
+    //   - bottom -> top ("cross-in"): arriving out of that same
+    //     distance, walking up onto the sidewalk. Reaching the top is
+    //     what lets it join the sidewalk crowd — it becomes a normal
+    //     walker only once it actually arrives, never by reappearing
+    //     mid-crossing.
+    //
+    // Elements authored with the `cross` class start the page already
+    // mid cross-in, at the `left` already set on them in the markup,
+    // so there's visible arriving traffic immediately on load.
+    //
+    // Crossing claims a crosswalk (stored as the pedestrian's
+    // `crosswalkIndex` while it's crossing or waiting to), and the
+    // traffic-yield pass below brakes cars/buses before any crosswalk
+    // that's currently claimed — not just near wherever a pedestrian
+    // happens to be standing. The two sides also yield to whichever of
+    // them got there first: a walker who reaches the curb while a
+    // vehicle is already over the crosswalk holds at the curb
+    // (`waiting-to-cross` / `waiting-to-cross-in`) until it clears,
+    // rather than stepping out in front of it.
+    (function () {
+      var CROSS_CHANCE = 0.55;
+      var CROSS_COOLDOWN_MS = 3500;
+      var RESPAWN_DELAY_MIN_MS = 1200;
+      var RESPAWN_DELAY_MAX_MS = 4000;
+      var EDGE_MARGIN_PX = 16;
+      var JITTER_PX = 4;
+      var STOP_GAP = 26;
+      var ENTRY_BOTTOM_OFFSET = 6; // above ground height: the "back sidewalk" lip
+      var EXIT_BOTTOM = -26; // below 0: clipped by the scene's own overflow:hidden
+      var ACTIVE_MODES = { 'waiting-to-cross': 1, 'cross-out': 1, 'waiting-to-cross-in': 1, 'cross-in': 1 };
+      // Desktop only: the left-sidebar scene and the right footer scene
+      // sit side by side, so a walker reaching either panel's outer edge
+      // hands off into the neighboring scene instead of wrapping in
+      // place (see attemptHandoff / applyTransfers below).
+      var WORLD_MQ = window.matchMedia('(min-width: 48.0625em)');
+      var pendingTransfers = [];
+      function groundHeightPx(scene) {
+        var n = parseFloat(getComputedStyle(scene).getPropertyValue('--scene-ground-height'));
+        return isNaN(n) ? 24 : n;
+      }
+      function lerp(a, b, t) { return a + (b - a) * t; }
+      function overlapsX(a, b) { return a.right > b.left && b.right > a.left; }
+      function crosswalkOccupied(crosswalkRect, vehicles) {
+        for (var i = 0; i < vehicles.length; i++) {
+          if (overlapsX(vehicles[i].getBoundingClientRect(), crosswalkRect)) return true;
+        }
+        return false;
+      }
+      function nearestCrosswalkIndex(crosswalks, sceneLeft, targetPx) {
+        var bestI = -1, bestD = Infinity;
+        for (var i = 0; i < crosswalks.length; i++) {
+          var r = crosswalks[i].getBoundingClientRect();
+          var d = Math.abs((r.left + r.right) / 2 - sceneLeft - targetPx);
+          if (d < bestD) { bestD = d; bestI = i; }
+        }
+        return bestI;
+      }
+      function makePedestrians(scene) {
+        var people = scene.querySelectorAll('.person');
+        var crosswalks = scene.querySelectorAll('.crosswalk');
+        var ground = groundHeightPx(scene);
+        var sceneLeft = scene.getBoundingClientRect().left;
+        var sceneWidth = scene.clientWidth || 300;
+        var states = [];
+        for (var i = 0; i < people.length; i++) {
+          var el = people[i];
+          var dir = el.classList.contains('facing-left') ? -1 : 1;
+          var seedArriving = el.classList.contains('cross');
+          var leftPct = parseFloat(el.style.left);
+          if (isNaN(leftPct)) leftPct = Math.random() * 100;
+          el.style.setProperty('--person-facing', dir > 0 ? 1 : -1);
+          if (seedArriving) el.classList.add('is-crossing');
+          states.push({
+            el: el,
+            dir: dir,
+            leftPct: leftPct,
+            speedPxPerSec: 16 + Math.random() * 10,
+            mode: seedArriving ? 'cross-in' : 'walk',
+            crossT: seedArriving ? Math.random() * 0.5 : 0,
+            crossDuration: 1.8 + Math.random() * 0.6,
+            cooldownUntil: 0,
+            respawnAt: 0,
+            crosswalkIndex: seedArriving && crosswalks.length
+              ? nearestCrosswalkIndex(crosswalks, sceneLeft, leftPct / 100 * sceneWidth)
+              : null,
+            originalBottom: el.style.bottom || ''
+          });
+        }
+        return { scene: scene, ground: ground, crosswalks: crosswalks, people: states };
+      }
+      function stepPedestrians(sceneState, dt, now) {
+        var sceneWidth = sceneState.scene.clientWidth || 300;
+        var sceneLeft = sceneState.scene.getBoundingClientRect().left;
+        var vehicles = sceneState.scene.querySelectorAll('.car, .bus');
+        var cwRects = [];
+        var centers = [];
+        for (var w = 0; w < sceneState.crosswalks.length; w++) {
+          var r = sceneState.crosswalks[w].getBoundingClientRect();
+          cwRects.push(r);
+          centers.push((r.left + r.right) / 2 - sceneLeft);
+        }
+        var claimed = [];
+        for (var cl = 0; cl < cwRects.length; cl++) claimed.push(false);
+        for (var k = 0; k < sceneState.people.length; k++) {
+          var sk = sceneState.people[k];
+          if (sk.crosswalkIndex != null && ACTIVE_MODES[sk.mode]) claimed[sk.crosswalkIndex] = true;
+        }
+        sceneState.claimed = claimed;
+        sceneState.crosswalkRects = cwRects;
+        for (var i = 0; i < sceneState.people.length; i++) {
+          var s = sceneState.people[i];
+          if (s.mode === 'walk') {
+            var prevPx = s.leftPct / 100 * sceneWidth;
+            var nextPx = prevPx + s.dir * s.speedPxPerSec * dt;
+            var triggered = false;
+            if (centers.length && now > s.cooldownUntil) {
+              for (var ci = 0; ci < centers.length; ci++) {
+                var c = centers[ci];
+                var crossedFwd = s.dir > 0 && prevPx <= c && nextPx >= c;
+                var crossedBack = s.dir < 0 && prevPx >= c && nextPx <= c;
+                if ((crossedFwd || crossedBack) && Math.random() < CROSS_CHANCE) {
+                  var jittered = c + (Math.random() * JITTER_PX * 2 - JITTER_PX);
+                  s.crosswalkIndex = ci;
+                  s.leftPct = jittered / sceneWidth * 100;
+                  // Claim it immediately (sceneState.claimed was snapshotted
+                  // before this loop ran, so it doesn't know about this
+                  // pedestrian yet) so yieldAtCrosswalks brakes an
+                  // already-close vehicle starting this same frame, instead
+                  // of one frame late — which was enough for a close vehicle
+                  // to slip through the stop-line window unbraked.
+                  sceneState.claimed[ci] = true;
+                  if (crosswalkOccupied(cwRects[ci], vehicles)) {
+                    s.mode = 'waiting-to-cross';
+                  } else {
+                    s.mode = 'cross-out';
+                    s.crossT = 0;
+                    s.el.classList.add('is-crossing');
+                  }
+                  triggered = true;
+                  break;
+                }
+              }
+            }
+            if (!triggered) {
+              if (!attemptHandoff(sceneState, s, nextPx, sceneWidth)) {
+                if (nextPx > sceneWidth + EDGE_MARGIN_PX) nextPx = -EDGE_MARGIN_PX;
+                else if (nextPx < -EDGE_MARGIN_PX) nextPx = sceneWidth + EDGE_MARGIN_PX;
+                s.leftPct = nextPx / sceneWidth * 100;
+              }
+            }
+          } else if (s.mode === 'waiting-to-cross') {
+            // Standing at the curb — a vehicle already has the crosswalk.
+            if (!crosswalkOccupied(cwRects[s.crosswalkIndex], vehicles)) {
+              s.mode = 'cross-out';
+              s.crossT = 0;
+              s.el.classList.add('is-crossing');
+            }
+          } else if (s.mode === 'cross-out') {
+            // Walking away from the viewer. Disappears for good at the
+            // bottom — it does not resume as a walker.
+            s.crossT += dt / s.crossDuration;
+            if (s.crossT >= 1) {
+              s.crossT = 1;
+              s.mode = 'waiting';
+              s.crosswalkIndex = null;
+              s.respawnAt = now + RESPAWN_DELAY_MIN_MS + Math.random() * (RESPAWN_DELAY_MAX_MS - RESPAWN_DELAY_MIN_MS);
+              s.el.classList.remove('is-crossing');
+              s.el.style.bottom = EXIT_BOTTOM + 'px';
+            } else {
+              s.el.style.bottom = lerp(sceneState.ground + ENTRY_BOTTOM_OFFSET, EXIT_BOTTOM, s.crossT) + 'px';
+            }
+          } else if (s.mode === 'waiting') {
+            // Off-stage (clipped by the scene's overflow:hidden) until
+            // it's time to re-enter as a fresh arrival.
+            if (now >= s.respawnAt && centers.length) {
+              var pick = Math.floor(Math.random() * centers.length);
+              s.crosswalkIndex = pick;
+              sceneState.claimed[pick] = true;
+              s.leftPct = (centers[pick] + (Math.random() * JITTER_PX * 2 - JITTER_PX)) / sceneWidth * 100;
+              s.dir = Math.random() < 0.5 ? -1 : 1;
+              s.el.style.setProperty('--person-facing', s.dir > 0 ? 1 : -1);
+              s.mode = 'waiting-to-cross-in';
+            }
+          } else if (s.mode === 'waiting-to-cross-in') {
+            // Held just off-stage — a vehicle already has the crosswalk.
+            if (!crosswalkOccupied(cwRects[s.crosswalkIndex], vehicles)) {
+              s.mode = 'cross-in';
+              s.crossT = 0;
+              s.el.classList.add('is-crossing');
+            }
+          } else { // 'cross-in'
+            // Walking up out of the distance. Only on actually reaching
+            // the sidewalk does it become a normal walker.
+            s.crossT += dt / s.crossDuration;
+            if (s.crossT >= 1) {
+              s.crossT = 1;
+              s.mode = 'walk';
+              s.crosswalkIndex = null;
+              s.cooldownUntil = now + CROSS_COOLDOWN_MS;
+              s.el.classList.remove('is-crossing');
+              s.el.style.bottom = s.originalBottom;
+            } else {
+              s.el.style.bottom = lerp(EXIT_BOTTOM, sceneState.ground + ENTRY_BOTTOM_OFFSET, s.crossT) + 'px';
+            }
+          }
+          s.el.style.left = s.leftPct + '%';
+        }
+      }
+      // Hands a walker off from one scene to its neighbor in `sceneStates`
+      // (document order: left-sidebar scene, then the right footer scene)
+      // when it overshoots that scene's own edge, carrying its overshoot
+      // distance over as the entry offset into the neighbor so the step
+      // doesn't skip or pause at the seam. Only active on desktop, where
+      // the two scenes sit side by side; elsewhere (or with only one
+      // scene) it declines and the caller falls back to wrapping in place.
+      function attemptHandoff(sceneState, s, nextPx, sceneWidth) {
+        if (!WORLD_MQ.matches || sceneStates.length < 2) return false;
+        var idx = sceneStates.indexOf(sceneState);
+        if (idx === -1) return false;
+        var targetIdx, entryPx;
+        // Trigger right at the seam (not after EDGE_MARGIN_PX of clipped,
+        // invisible travel) so there's no gap between leaving one scene
+        // and appearing in the other.
+        if (s.dir > 0 && nextPx > sceneWidth) {
+          targetIdx = (idx + 1) % sceneStates.length;
+          entryPx = nextPx - sceneWidth;
+        } else if (s.dir < 0 && nextPx < 0) {
+          targetIdx = (idx - 1 + sceneStates.length) % sceneStates.length;
+          entryPx = (sceneStates[targetIdx].scene.clientWidth || sceneWidth) + nextPx;
+        } else {
+          return false;
+        }
+        if (targetIdx === idx) return false;
+        pendingTransfers.push({ from: sceneState, to: sceneStates[targetIdx], state: s, entryPx: entryPx });
+        return true;
+      }
+      function applyTransfers() {
+        for (var i = 0; i < pendingTransfers.length; i++) {
+          var t = pendingTransfers[i];
+          var fromIdx = t.from.people.indexOf(t.state);
+          if (fromIdx !== -1) t.from.people.splice(fromIdx, 1);
+          t.to.people.push(t.state);
+          t.to.scene.appendChild(t.state.el);
+          var targetWidth = t.to.scene.clientWidth || 300;
+          t.state.leftPct = t.entryPx / targetWidth * 100;
+          t.state.el.style.left = t.state.leftPct + '%';
+        }
+        pendingTransfers.length = 0;
+      }
+      var sceneStates = [];
+      var scenes = document.querySelectorAll('.scene');
+      for (var sc = 0; sc < scenes.length; sc++) {
+        if (scenes[sc].querySelector('.person')) sceneStates.push(makePedestrians(scenes[sc]));
+      }
+      var lastLeft = new WeakMap();
+      var lastDir = new WeakMap();
+      function yieldAtCrosswalks(sceneState) {
+        var vehicles = sceneState.scene.querySelectorAll('.car, .bus');
+        var claimed = sceneState.claimed || [];
+        var cwRects = sceneState.crosswalkRects || [];
+        if (!vehicles.length || !cwRects.length) return;
+        for (var v = 0; v < vehicles.length; v++) {
+          var vehicle = vehicles[v];
+          var rect = vehicle.getBoundingClientRect();
+          var prev = lastLeft.get(vehicle);
+          lastLeft.set(vehicle, rect.left);
+          var dir = lastDir.get(vehicle) || 0;
+          if (prev !== undefined) {
+            var dx = rect.left - prev;
+            if (dx > 0.02) dir = 1;
+            else if (dx < -0.02) dir = -1;
+          }
+          lastDir.set(vehicle, dir);
+          if (!dir) continue;
+          var hazard = false;
+          for (var ci = 0; ci < cwRects.length; ci++) {
+            if (!claimed[ci]) continue;
+            var cw = cwRects[ci];
+            // Stop before it, same as a car does at a real stop line.
+            // One already past that line when the claim appears is left
+            // to clear the crosswalk rather than being frozen on it.
+            var gap = dir > 0 ? (cw.left - rect.right) : (rect.left - cw.right);
+            if (gap >= 0 && gap < STOP_GAP) { hazard = true; break; }
+          }
+          if (hazard) vehicle.classList.add('is-stopped');
+          else vehicle.classList.remove('is-stopped');
+        }
+      }
+      var lastNow = null;
+      function tick(now) {
+        var dt = lastNow == null ? 0 : Math.min((now - lastNow) / 1000, 0.05);
+        lastNow = now;
+        for (var i = 0; i < sceneStates.length; i++) {
+          stepPedestrians(sceneStates[i], dt, now);
+          yieldAtCrosswalks(sceneStates[i]);
+        }
+        applyTransfers();
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  </script>
+<script>
+    // Desktop only: the left-sidebar scene and the right footer scene sit
+    // side by side, so this makes them read as one continuous strip.
+    // It keeps the ground/hills tile phase aligned across the panel seam,
+    // and drives the car/bus/cloud/bird sprites that exist in both scenes
+    // (see the `html.world-sync` CSS rule) from one shared world position
+    // instead of two independently-timed CSS animations, so a sprite
+    // leaving one panel is already in place at the matching edge of the
+    // other. Pedestrians get the equivalent treatment in the script above.
+    (function () {
+      var leftScene = document.querySelector('.left > .scene');
+      var footerScene = document.querySelector('.right .scene--footer');
+      if (!leftScene || !footerScene) return;
+      var mq = window.matchMedia('(min-width: 48.0625em)');
+      var GROUND_TILE = 64;
+      var HILL_TILE = 960;
+      function pair(selector) {
+        var leftEl = leftScene.querySelector(selector);
+        var rightEl = footerScene.querySelector(selector);
+        if (!leftEl || !rightEl) return null;
+        var cs = getComputedStyle(leftEl);
+        var duration = parseFloat(cs.animationDuration.split(',')[0]) || 10;
+        var delay = parseFloat(cs.animationDelay.split(',')[0]) || 0;
+        // Some species (car.c3, bus.b2) play their position keyframe in
+        // reverse, i.e. travel right-to-left; dir flips the direction
+        // their world position advances in, not just their sprite facing.
+        var reversed = cs.animationDirection.split(',')[0].trim() === 'reverse';
+        var width = leftEl.offsetWidth || rightEl.offsetWidth || 20;
+        var margin = width + 10;
+        var initialFraction = (((-delay % duration) + duration) % duration) / duration;
+        return { leftEl: leftEl, rightEl: rightEl, margin: margin, duration: duration, dir: reversed ? -1 : 1, initialFraction: initialFraction, speed: 0, worldSpan: 0, phase0: 0 };
+      }
+      var entities = [
+        pair('.car:not(.c2):not(.c3)'),
+        pair('.car.c2'),
+        pair('.car.c3'),
+        pair('.bus:not(.b2)'),
+        pair('.bus.b2'),
+        pair('.cloud.c1'),
+        pair('.cloud.c2'),
+        pair('.bird.b1'),
+        pair('.bird.b2')
+      ].filter(Boolean);
+      var leftWidth = 0, rightWidth = 0;
+      var groundEls = footerScene.querySelectorAll(':scope > .ground');
+      var hillEls = footerScene.querySelectorAll(':scope > .hills');
+      function resetBackgrounds() {
+        for (var g = 0; g < groundEls.length; g++) groundEls[g].style.backgroundPositionX = '';
+        for (var h = 0; h < hillEls.length; h++) hillEls[h].style.backgroundPositionX = '';
+      }
+      function syncBackgrounds() {
+        if (!mq.matches) { resetBackgrounds(); return; }
+        var groundOffset = -(leftWidth % GROUND_TILE);
+        var hillOffset = -(leftWidth % HILL_TILE);
+        for (var g = 0; g < groundEls.length; g++) groundEls[g].style.backgroundPositionX = groundOffset + 'px';
+        for (var h = 0; h < hillEls.length; h++) hillEls[h].style.backgroundPositionX = hillOffset + 'px';
+      }
+      function resetEntityPositions() {
+        for (var i = 0; i < entities.length; i++) {
+          entities[i].leftEl.style.left = '';
+          entities[i].rightEl.style.left = '';
+        }
+      }
+      function measure() {
+        leftWidth = leftScene.clientWidth;
+        rightWidth = footerScene.clientWidth;
+        for (var i = 0; i < entities.length; i++) {
+          var e = entities[i];
+          e.worldSpan = leftWidth + rightWidth + e.margin * 2;
+          e.speed = (leftWidth + e.margin * 2) / e.duration;
+          e.phase0 = e.initialFraction * e.worldSpan;
+        }
+        syncBackgrounds();
+      }
+      function applyMode() {
+        document.documentElement.classList.toggle('world-sync', mq.matches);
+        if (!mq.matches) resetEntityPositions();
+        measure();
+      }
+      var resizeTimer = null;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(measure, 150);
+      });
+      if (mq.addEventListener) mq.addEventListener('change', applyMode);
+      else if (mq.addListener) mq.addListener(applyMode);
+      applyMode();
+      var startTime = null;
+      function tick(now) {
+        if (mq.matches) {
+          if (startTime == null) startTime = now;
+          var elapsed = (now - startTime) / 1000;
+          for (var i = 0; i < entities.length; i++) {
+            var e = entities[i];
+            if (!e.worldSpan) continue;
+            var raw = (e.phase0 + e.dir * e.speed * elapsed) % e.worldSpan;
+            if (raw < 0) raw += e.worldSpan;
+            var x = raw - e.margin;
+            e.leftEl.style.left = x + 'px';
+            e.rightEl.style.left = (x - leftWidth) + 'px';
+          }
+        } else {
+          startTime = null;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  </script>
+<script>
+    // Newari-house window peek: at random, roughly every 7-16s, the main
+    // house's shutters swing open and either the Kumari or the Lakhe
+    // leans out for a couple of seconds before ducking back in. Each
+    // house runs its own independent, randomized schedule.
+    (function () {
+      var MIN_GAP_MS = 7000;
+      var MAX_GAP_MS = 16000;
+      var PEEK_MS = 2600;
+      function scheduleHouse(house) {
+        var delay = MIN_GAP_MS + Math.random() * (MAX_GAP_MS - MIN_GAP_MS);
+        setTimeout(function () {
+          var who = Math.random() < 0.5 ? 'kumari-peek' : 'lakhe-peek';
+          house.classList.add('window-open', who);
+          setTimeout(function () {
+            house.classList.remove(who);
+            setTimeout(function () {
+              house.classList.remove('window-open');
+            }, 450);
+          }, PEEK_MS);
+          scheduleHouse(house);
+        }, delay);
+      }
+      var houses = document.querySelectorAll('.house.main-newar');
+      for (var i = 0; i < houses.length; i++) scheduleHouse(houses[i]);
+    })();
+  </script>
 </body>
-
 </html>
